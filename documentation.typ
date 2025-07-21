@@ -169,3 +169,27 @@ Saving to: ‘STDOUT’
 <title>Welcome to nginx!</title>
 ...
 ```
+
+=== Exercise 4: `ssh-agent` installation
+
+`ssh-agent` has been installed on the local system.
+Now every first time a login session needs to use the private key to establish connections the agent asks for the passphrase of the active key.
+Every following request is then answered by the ssh-agent alleviating the user of the need to enter the passphrase every time it has to be used by the SSH client.
+
+This can also be combined with the #link("https://github.com/funtoo/keychain")[`keychain`] package to further reduce the need to enter the passphrase to once every system reboot.
+
+=== Exercise 5: MI Gitlab access by ssh
+
+Under _Preferences/SSH Keys_ the public SSH key of the local machine has been added.
+This has for example been used to push the first three exercises of this documentation to the MI Gitlab:
+
+```
+# git remote add origin git@gitlab.mi.hdm-stuttgart.de:sdi-dw084/sdi.git
+# git push --set-upstream origin --all
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 24 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 3.96 KiB | 3.96 MiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+```
