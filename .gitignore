@@ -1,0 +1,7 @@
+# Adapted from https://github.com/github/gitignore/blob/main/Terraform.gitignore
+.terraform
+
+*.tfstate
+*.tfstate.*
+
+*.tfvars
