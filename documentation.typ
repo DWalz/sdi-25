@@ -259,6 +259,8 @@ resource "hcloud_server" "exercise_11" {
 }
 ```
 
+#figure(image("images/server_ssh_firewall.png"), caption: [Server with applied SSH firewall in the Hetzner Web Console.]) <server_with_ssh_firewall>
+
 === Applying the Configuration to the Cloud
 
 Running ```bash terraform plan``` will once again show changes that will be made to the infrastructure.
@@ -379,3 +381,47 @@ $ terraform apply
 server_datacenter = "hel1-dc2"
 server_ip = "37.27.219.19"
 ```
+
+== Exercise 12: Automatic Nginx installation
+
+The following script can be used to install, start and enable (make it survive a re-boot) the `nginx` package on the server the following script has been created.
+It will update the system first ```bash apt-get update``` and ```bash apt-get -y upgrade``` and after that install Nginx and enable it using the `systemctl`:
+
+```bash
+#!/bin/sh
+# Update installation
+apt-get update
+apt-get -y upgrade
+
+# Install nginx
+apt-get -y install nginx
+
+# Start and enable (survive after re-boot) nginx
+systemctl start nginx
+systemctl enable nginx
+```
+
+To make the script run on server start the `user_data` argument is used to pass the file to terraform.
+It will be applied to the server once it starts.
+
+To be able to reach the webserver and test the success of installing `nginx` the server needs a firewall that allows incoming HTTP traffic.
+This is done by adding a rule for the TCP protocol on port 80:
+
+```tf
+resource "hcloud_firewall" "fw_exercise_12" {
+  name = "exercise-12-fw"
+  ...
+  rule {
+    description = "HTTP inbound"
+    direction   = "in"
+    protocol    = "tcp"
+    port        = 80
+    source_ips  = ["0.0.0.0/0", "::/0"]
+  }
+}
+```
+
+When accessing the website in the browser under `http://95.216.223.223` the `nginx` default landing page can be observed.
+Even after a server restart there is no additional commands that need to be executed on the server to make `nginx` running again thus showing the landing page immediately.
+
+#figure(image("images/nginx_landing_page.png"), caption: [`nginx` landing page.]) <nginx_landing>
