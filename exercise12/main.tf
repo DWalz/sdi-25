@@ -1,10 +1,10 @@
 terraform {
   required_providers {
     hcloud = {
-      source = "hetznercloud/hcloud"
+      source  = "hetznercloud/hcloud"
+      version = "1.51.0"
     }
   }
-  required_version = ">= 0.13"
 }
 
 variable "hcloud_api_token" {
@@ -18,7 +18,7 @@ provider "hcloud" {
 }
 
 resource "hcloud_firewall" "fw_exercise_12" {
-  name = "exercise-12-fw"
+  name = "exercise-12-fw-with-attachment"
   rule {
     description = "SSH inbound"
     direction   = "in"
@@ -41,10 +41,14 @@ resource "hcloud_ssh_key" "dw084_ssh_key" {
 }
 
 resource "hcloud_server" "exercise_12" {
-  name         = "exercise-12"
-  image        = "debian-12"
-  server_type  = "cx22"
-  firewall_ids = [hcloud_firewall.fw_exercise_12.id]
-  ssh_keys     = [hcloud_ssh_key.dw084_ssh_key.id]
-  user_data    = file("install_nginx.sh")
+  name        = "exercise-12"
+  image       = "debian-12"
+  server_type = "cpx11"
+  ssh_keys    = [hcloud_ssh_key.dw084_ssh_key.id]
+  user_data   = file("install_nginx.sh")
+}
+
+resource "hcloud_firewall_attachment" "exercise_fw_attachment" {
+  firewall_id = hcloud_firewall.fw_exercise_12.id
+  server_ids  = [hcloud_server.exercise_12.id]
 }
