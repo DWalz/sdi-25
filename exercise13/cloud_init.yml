@@ -1,0 +1,31 @@
+#cloud-config
+ssh_pwauth: false
+disable_root: true
+users:
+  - name: devops
+    sudo: [ALL=(ALL) NOPASSWD:ALL]
+    lock_passwd: true
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPZ4lA1SGICnXIgP1QUH8kLCzVFRQh3/hSlz+rBZtfUn
+    shell: /bin/bash
+package_reboot_if_required: true
+package_update: true
+package_upgrade: true
+packages:
+  - nginx
+  - fail2ban
+  - python3-systemd
+  - plocate
+runcmd:
+  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  # Fail2ban workaround
+  - echo "[sshd]\nbackend = systemd\nenabled = true" | tee /etc/fail2ban/jail.local
+  - systemctl restart fail2ban
+  # Update plocate database
+  - updatedb
+  # Nginx
+  - systemctl enable nginx
+  - rm /var/www/html/*
+  - >
+    echo "I'm Nginx @ $(dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com) 
+    created $(date -u)" >> /var/www/html/index.html
