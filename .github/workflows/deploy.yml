@@ -1,12 +1,10 @@
 name: Deploy MkDocs site to GitHub Pages
-
 on:
     push:
         branches: [main] # or 'master' if that's your default branch
 
 permissions:
     contents: write
-
 jobs:
     deploy:
         runs-on: ubuntu-latest
