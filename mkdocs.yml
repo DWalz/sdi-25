@@ -1,0 +1,36 @@
+site_name: Software Defined Infrastructure Group 2
+theme:
+  name: readthedocs
+markdown_extensions:
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+nav:
+  - Home: index.md
+  - Manual Server Management:
+    - Exercise 1: exercise01.md
+    - Exercise 2: exercise02.md
+    - Exercise 3: exercise03.md
+    - Exercise 4: exercise04.md
+    - Exercise 5: exercise05.md
+    - Exercise 6: exercise06.md
+    - Exercise 7: exercise07.md
+    - Exercise 8: exercise08.md
+    - Exercise 9: exercise09.md
+    - Exercise 10: exercise10.md
+  - Cloud Provider:
+    - Exercise 11: exercise11.md
+    - Exercise 12: exercise12.md
+    - Exercise 13: exercise13.md
+    - Exercise 14: exercise14.md
+    - Exercise 15: exercise15.md
+    - Exercise 16: exercise16.md
+    - Exercise 17: exercise17.md
+    - Exercise 18: exercise18.md
+    - Exercise 19: exercise19.md
+    - Exercise 20: exercise20.md
+    - Exercise 21: exercise21.md
+    - Exercise 22: exercise22.md
+    - Exercise 23: exercise23.md
+    - Exercise 24: exercise24.md
+    - Exercise 25: exercise25.md
+    - Exercise 26: exercise26.md
