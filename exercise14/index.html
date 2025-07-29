@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Exercise 14 - Software Defined Infrastructure Group 2</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercise 14";
+        var mkdocs_page_input_path = "exercise14.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Software Defined Infrastructure Group 2
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manual Server Management</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise01/">Exercise 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise02/">Exercise 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise03/">Exercise 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise04/">Exercise 4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise05/">Exercise 5</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise06/">Exercise 6</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise07/">Exercise 7</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise08/">Exercise 8</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise09/">Exercise 9</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise10/">Exercise 10</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Provider</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise11/">Exercise 11</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise12/">Exercise 12</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise13/">Exercise 13</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercise 14</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#generation-of-the-known_hosts-file">Generation of the known_hosts file</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#yaml-files-and-indentation">YAML Files and Indentation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#generating-wrappers-around-ssh-and-scp">Generating Wrappers around ssh and scp</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise15/">Exercise 15</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise16/">Exercise 16</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise17/">Exercise 17</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise18/">Exercise 18</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise19/">Exercise 19</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise20/">Exercise 20</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise21/">Exercise 21</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise22/">Exercise 22</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise23/">Exercise 23</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise24/">Exercise 24</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise25/">Exercise 25</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise26/">Exercise 26</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Software Defined Infrastructure Group 2</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Cloud Provider</li>
+      <li class="breadcrumb-item active">Exercise 14</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercise-14-solving-the-sshknown_hosts-quirk">Exercise 14: Solving the <code>~/.ssh/known_hosts</code> quirk</h1>
+<p>As observed in <a href="../exercise02/">Exercise 2</a> the <code>ssh</code> program warns the
+user every time the SSH fingerprint of a known host changes because such
+a change can be the indication of a man-in-the-middle attack. To prevent
+this error from occurring and to avoid the pollution of the
+<code>~/.ssh/known_hosts</code> file on the local machine we can generate such a
+<code>known_hosts</code> file ourself and tell the <code>ssh</code> program (and related
+programs) to use this custom <code>known_hosts</code> file.</p>
+<h2 id="generation-of-the-known_hosts-file">Generation of the <code>known_hosts</code> file</h2>
+<p>The generation of the <code>known_hosts</code> file requires us to know the
+fingerprint of the server. This is done by generating the SSH keypair on
+the local machine and transferring it to the server using <code>cloud-init</code>.</p>
+<p>The generation of a keypair can be done using the resource
+<code>tls_private_key</code> and specifying the signature algorithm used:</p>
+<pre class="highlight"><code class="language-tf">resource "tls_private_key" "server_ssh_key" {
+  algorithm = "ED25519"
+}</code></pre>
+<p>This keypair will then be used when hydrating a <code>cloud-init</code> template
+file with values. The public and private key are filled into the file
+and the fully generated <code>cloud-init</code> file will then be run on the
+server. With the usage of a template file it is also possible to stub
+more than just the SSH keys. For simpler usage and transferability the
+previously hardcoded <code>devops</code> username and SSH public key of the local
+machine can also be injected dynamically allowing for more control of
+the resulting server setup.</p>
+<p>The following configuration is used in Terraform to create both the
+custom <code>cloud_init</code> as well as the <code>known_hosts</code> file:</p>
+<pre class="highlight"><code class="language-tf">resource "local_file" "cloud_init" {
+  filename = "./gen/cloud_init.yml"
+  content = templatefile("./template/cloud_init.yml", {
+    default_user     = var.server_username
+    local_ssh_public = file("~/.ssh/id_ed25519.pub")
+    ssh_private      = tls_private_key.server_ssh_key.private_key_openssh
+    ssh_public       = tls_private_key.server_ssh_key.public_key_openssh
+  })
+}
+
+resource "local_file" "known_hosts" {
+  filename        = "./gen/known_hosts"
+  content         = join(" ", [hcloud_server.exercise_14.ipv4_address, tls_private_key.server_ssh_key.public_key_openssh])
+  file_permission = "644"
+}</code></pre>
+<h3 id="yaml-files-and-indentation">YAML Files and Indentation</h3>
+<p>The <code>templatefile</code> function provided by Terraform simply replaces the
+template strings of the form <code>${var_name}</code> with the provided values of
+the variable <code>var_name</code>. This can especially lead to issues when
+templating files in a format that is dependent on whitespace. Since the
+private key file of a SSH keypair is usually multiple lines long this
+leads to the follwing replacements inside the <code>cloud-init</code> file:</p>
+<pre class="highlight"><code class="language-yml">ssh_keys:
+  ed25519_public: ${ssh_public}
+  ed25519_private: ${ssh_private}</code></pre>
+<p>Will become:</p>
+<pre class="highlight"><code class="language-yml">ssh_keys:
+  ed25519_private: -----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz
+...
+-----END OPENSSH PRIVATE KEY-----
+  ed25519_public: ssh-ed25519 AAAC3NzaC1lZDI1NTE5AAAAIHu7IFxgFGxalBAzKagNefEWGxgoBf9Et+gpEjnEmLKC</code></pre>
+<p>Which is not valid YAML. The <code>cloud-init</code> provision will fail and the
+server will not behave as specified.</p>
+<p>To resolve this issue there are two possible solutions: <code>yamlencode</code>.
+<code>yamlencode</code> is a function provided by Terraform that can encode a valid
+Terraform object structure into correctly formatted YAML:</p>
+<pre class="highlight"><code class="language-yml">${yamlencode({
+  ssh_keys = {
+    ed25519_public = ssh_public
+    ed25519_private = ssh_private
+  }
+})}</code></pre>
+<p>Will expand to:</p>
+<pre class="highlight"><code class="language-yml">"ssh_keys":
+  "ed25519_private": |
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz
+    ...
+    -----END OPENSSH PRIVATE KEY-----
+  "ed25519_public": |
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHu7IFxgFGxalBAzKagNefEWGxgoBf9Et+gpEjnEmLKC</code></pre>
+<p>Which is now correctly formatted.</p>
+<h2 id="generating-wrappers-around-ssh-and-scp">Generating Wrappers around <code>ssh</code> and <code>scp</code></h2>
+<p>To now use the custom <code>known_hosts</code> file we can specify it to the <code>ssh</code>
+program to use when connecting to the server: <code>ssh -o UserKnownHostsFile="./gen/known_hosts" devops@95.216.223.223</code>. To make connecting even more convenient we can now create a script
+that executes this code since both username and IP address are also
+known.</p>
+<p>Similarly the <code>scp</code> program which is used to transfer files between
+hosts using SSH can be wrapped in the same way.</p>
+<p>For both files a template was created and the <code>templatefile</code> function
+was used in a <code>local_file</code> resource for both files respectively:</p>
+<pre class="highlight"><code class="language-tf">resource "local_file" "ssh_bin" {
+  filename = "./bin/ssh.sh"
+  content = templatefile("./template/ssh.sh", {
+    default_user = var.server_username
+    ip           = hcloud_server.exercise_14.ipv4_address
+  })
+  file_permission = "755"
+  depends_on      = [local_file.known_hosts]
+}
+
+resource "local_file" "scp_bin" {
+  filename = "./bin/scp.sh"
+  content = templatefile("./template/scp.sh", {
+    default_user = var.server_username
+    ip           = hcloud_server.exercise_14.ipv4_address
+  })
+  file_permission = "755"
+  depends_on      = [local_file.known_hosts]
+}</code></pre>
+<p>Different to the other <code>local_file</code> resources (like <code>known_hosts</code>) these
+need some additional arguments: The file permission <code>755</code> needs to be
+set which expands to <code>rwxr-xr-x</code>, giving the owner of the file read,
+write and execute rights while everyone else gets read and execute
+rights. This is important so that the generated script can be executed.
+Additionally the <code>depends_on</code> argument is set to mark this file
+dependent on the <code>known_hosts</code> file. It will only be generated after the
+<code>known_hosts</code> file has been generated and respectively will be destroyed
+before the <code>known_hosts</code> file will be destroyed to ensure the
+depenedency chain.</p>
+<p>The two files can now be used to transfer files between the local
+machine and the server and connect in a very convenient way, all without
+having to mess with any fingerprints again:</p>
+<pre class="highlight"><code class="language-txt">$ ./bin/scp.sh ./main.tf devops@95.216.223.223:~/test.tf
+main.tf                             100% 2625    65.5KB/s   00:00
+$ ./bin/ssh.sh
+Linux exercise-14 6.1.0-37-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.140-1 (2025-05-22) x86_64
+...
+devops@exercise-14:~$ ls
+test.tf
+devops@exercise-14:~$</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../exercise13/" class="btn btn-neutral float-left" title="Exercise 13"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exercise15/" class="btn btn-neutral float-right" title="Exercise 15">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../exercise13/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exercise15/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

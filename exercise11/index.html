@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Exercise 11 - Software Defined Infrastructure Group 2</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercise 11";
+        var mkdocs_page_input_path = "exercise11.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Software Defined Infrastructure Group 2
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manual Server Management</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise01/">Exercise 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise02/">Exercise 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise03/">Exercise 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise04/">Exercise 4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise05/">Exercise 5</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise06/">Exercise 6</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise07/">Exercise 7</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise08/">Exercise 8</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise09/">Exercise 9</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise10/">Exercise 10</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Provider</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercise 11</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#minimal-configuration-and-basics">Minimal Configuration and Basics</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-the-ssh-firewall">Adding the SSH Firewall</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#applying-the-configuration-to-the-cloud">Applying the Configuration to the Cloud</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-control-and-secrets">Version Control and Secrets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ssh-passwordless-login">SSH Passwordless Login</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creating-outputs-for-server-properties">Creating Outputs for Server Properties</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise12/">Exercise 12</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise13/">Exercise 13</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise14/">Exercise 14</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise15/">Exercise 15</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise16/">Exercise 16</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise17/">Exercise 17</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise18/">Exercise 18</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise19/">Exercise 19</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise20/">Exercise 20</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise21/">Exercise 21</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise22/">Exercise 22</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise23/">Exercise 23</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise24/">Exercise 24</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise25/">Exercise 25</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise26/">Exercise 26</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Software Defined Infrastructure Group 2</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Cloud Provider</li>
+      <li class="breadcrumb-item active">Exercise 11</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercise-11-incrementally-creating-a-base-system">Exercise 11: Incrementally creating a base system</h1>
+<h2 id="minimal-configuration-and-basics">Minimal Configuration and Basics</h2>
+<p>The minimal configuration contained in the mentioned figure has been
+copied into the file <code>main.tf</code>. Running <code>terraform init</code> initializes the provider module from the Hetzner Cloud specified at the
+top of the file. This allows us to use all the definitions of Hetzner in
+Terraform to manage the server infrastructure of the project via
+Terraform.</p>
+<p>The <code>hcloud_server</code> resource which is specifying a server instance in
+ouc configuration has been renamed to <code>exercise_11</code> for better
+identification. Running <code>terraform plan</code> right now, Terraform will us inform of changes it will make to the
+current configuration present in the cloud. The proposed changes follow
+the specifications made in the configuration:</p>
+<pre class="highlight"><code class="language-txt">$ terraform plan
+...
+Terraform will perform the following actions:
+
+  # hcloud_server.exercise_11 will be created
+  + resource "hcloud_server" "exercise_11" {
+      + image                      = "debian-12"
+      + name                       = "exercise-11"
+      + server_type                = "cx22"
+      + ipv4_address               = (known after apply)
+      ...
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.</code></pre>
+<h2 id="adding-the-ssh-firewall">Adding the SSH Firewall</h2>
+<p>To add an SSH firewall to the server a <code>hcloud_firewall</code> resource has to
+be created which represents a firewall object in the Hetzner Cloud. The
+firewall has to have a single inbound rule for TCP traffic on port 22:</p>
+<pre class="highlight"><code class="language-tf">resource "hcloud_firewall" "fw_ssh" {
+  name = "exercise-11-fw-ssh"
+  rule {
+    description = "SSH inbound"
+    direction   = "in"
+    protocol    = "tcp"
+    port        = 22
+    source_ips  = ["0.0.0.0/0", "::/0"]
+  }
+}</code></pre>
+<p>Important to notice here is that the rule also has to specify the
+<code>source_ips</code> which is the list of allowed IPs that the SSH traffic may
+be sent from. Setting them to <code>0.0.0.0/0</code> for IPv4 and <code>::/0</code> for IPv6
+addresses respectively allows any sender on the internet to send SSH
+packets to the server.</p>
+<p>To apply the firewall to the server, it has to be connected to it in the
+terraform configuration. The <code>hcloud_server</code> resource has the field
+<code>firewall_ids</code> which can be used to provide a list of IDs of firewalls
+to apply to that server. The firewall resource that has been created is
+passed into this list to apply the firewall to the server. Terraform
+allows us to reference the field of other resources by reference to fill
+them out once they become available. This means there is no need for
+manually transferring the ID of a created firewall resouce to the server
+resource definition:</p>
+<pre class="highlight"><code class="language-tf">resource "hcloud_server" "exercise_11" {
+  name         = "exercise-11"
+  image        = "debian-12"
+  server_type  = "cx22"
+  firewall_ids = [hcloud_firewall.fw_ssh.id]
+}</code></pre>
+<p><img alt="Server with applied SSH firewall in the Hetzner Web Console." src="../images/server_ssh_firewall.png" /></p>
+<h2 id="applying-the-configuration-to-the-cloud">Applying the Configuration to the Cloud</h2>
+<p>Running <code>terraform plan</code> will once again show changes that will be made to the infrastructure. In
+this case there will be two resources created: The firewall and the
+server resource. With <code>terraform apply</code> the planned configuration will then be acted upon and will be created in
+the Hetzner Cloud.</p>
+<p>In the Cloud Console the created server and firewall can now be
+observed. The server has an IP of <code>37.27.219.19</code> and the applied
+firewall can be seen. Pinging the server now would fail, since there is
+no ICMP firewall is configured for the server which would allow any ping
+traffic to it. The only way to reach it would be via SSH using <code>ssh root@37.27.219.19</code>.</p>
+<p>Sadly, the automatic E-Mail was never sent to the E-Mail account
+provided to Hetzner and therefor the root password was unknown. It can
+be reset using the <code>Rescue</code> tab in the Cloud Console to still connect to
+the server. A way better option however is to provide a SSH key to the
+server upon creation like in <a href="../exercise01/">Exercise 1</a>.</p>
+<h2 id="version-control-and-secrets">Version Control and Secrets</h2>
+<p>Currently the private API token for the Hetzner API is readable in plain
+text inside the <code>main.tf</code> file making it unable to be used in version
+control like Git. To circumvent the issue the token has to be specified
+as a variable which can then be used in the initialization of the
+<code>hcloud</code> provider. This makes it possible to load the variable from
+another file and then apply it without it ever having to be present in
+the configuration file:</p>
+<pre class="highlight"><code class="language-tf">variable "hcloud_api_token" {
+  description = "API token for the Hetzner Cloud"
+  type        = string
+  sensitive   = true
+}</code></pre>
+<p>This variable can now be used instead of the hardcoded value inside the
+<code>hcloud</code> provider:</p>
+<pre class="highlight"><code class="language-tf">provider "hcloud" {
+  token = var.hcloud_api_token
+}</code></pre>
+<p>Now the variable only has to be specified. Right now when using <code>terraform apply</code> Terraform will ask for the value of the variable:</p>
+<pre class="highlight"><code class="language-txt">$ terraform apply
+var.hcloud_api_token
+    API token for the Hetzner Cloud
+
+    Enter a value:</code></pre>
+<p>We can either input the API token every time using the CLI or
+alternatively use a <code>*.tfvars</code> file to specify the variables. In this
+case the file <code>secrets.tfvars</code> is used to provide a value to the
+<code>hcloud_api_token</code>: <code>hcloud_api_token = "..."</code> The variable file has to be loaded during the application using <code>terraform apply -var-file=secrets.tfvars</code>. To prevent the necessity of having to provide the file every time a
+Terraform command has to be used, the variable file can also be named
+<code>*.auto.tfvars</code> to load them automatically. This way the usage of
+Terraform remains simple.</p>
+<p>Now the <code>*.tfvars</code> files can be excluded from versioning to keep any
+sensitive information outside of version control.</p>
+<h2 id="ssh-passwordless-login">SSH Passwordless Login</h2>
+<p>To be able to log in to the server without using a password we have to
+add the public key of the local machine to the server’s
+<code>authorized_keys</code> file. To register a SSH key in the Hetzner Cloud the
+<code>hcloud_ssh_key</code> resource is used. In it the <code>public_key</code> can be
+provided from either a file or as a string:</p>
+<pre class="highlight"><code class="language-tf">resource "hcloud_ssh_key" "dw084_ssh_key" {
+  name       = "dw084-ssh-key"
+  public_key = file("~/.ssh/id_ed25519.pub")
+}</code></pre>
+<p>This SSH key can then be added to the server using the <code>ssh_keys</code> field
+in which a list of <code>hcloud_ssh_key</code> IDs can be specified to be added to
+the respective server:</p>
+<pre class="highlight"><code class="language-tf">resource "hcloud_server" "exercise_11" {
+  ...
+  ssh_keys     = [hcloud_ssh_key.dw084_ssh_key.id]
+}</code></pre>
+<p>After using <code>terraform apply</code> to create the infrastructure the login into the server works without
+having to enter any passwords:</p>
+<pre class="highlight"><code class="language-txt">$ ssh root@37.27.219.19
+...
+root@exercise-11:~#</code></pre>
+<h2 id="creating-outputs-for-server-properties">Creating Outputs for Server Properties</h2>
+<p>Some properties of created resources like the server’s IP can’t be known
+before applying the configuration. After the creation these values will
+become known to Terraform and can be displayed using a file named
+<code>outputs.tf</code>.</p>
+<p>In this file there may be arbitrary <code>output</code> sections created. They all
+have a <code>value</code> which may reference any static or dynamic values to
+display after successful usage of the <code>terraform apply</code> command. To display the IP and datacenter of the created server the
+<code>ipv4_address</code> and <code>datacenter</code> attribute of the <code>hcloud_server</code>
+resource are used respectively:</p>
+<pre class="highlight"><code class="language-tf">output "server_ip" {
+  description = "IP of the server created in exercise 11"
+  value       = hcloud_server.exercise_11.ipv4_address
+}
+
+output "server_datacenter" {
+  description = "Datacenter of the server created in exercise 11"
+  value       = hcloud_server.exercise_11.datacenter
+}</code></pre>
+<p>Now these two values are being displayed when running <code>terraform apply</code> :</p>
+<pre class="highlight"><code class="language-txt">$ terraform apply
+...
+server_datacenter = "hel1-dc2"
+server_ip = "37.27.219.19"</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../exercise10/" class="btn btn-neutral float-left" title="Exercise 10"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exercise12/" class="btn btn-neutral float-right" title="Exercise 12">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../exercise10/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exercise12/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

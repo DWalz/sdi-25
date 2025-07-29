@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Exercise 15 - Software Defined Infrastructure Group 2</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercise 15";
+        var mkdocs_page_input_path = "exercise15.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Software Defined Infrastructure Group 2
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manual Server Management</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise01/">Exercise 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise02/">Exercise 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise03/">Exercise 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise04/">Exercise 4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise05/">Exercise 5</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise06/">Exercise 6</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise07/">Exercise 7</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise08/">Exercise 8</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise09/">Exercise 9</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise10/">Exercise 10</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Provider</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise11/">Exercise 11</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise12/">Exercise 12</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise13/">Exercise 13</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise14/">Exercise 14</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercise 15</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#unmounting-the-volume">Unmounting the Volume</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#partitioning-the-volume">Partitioning the Volume</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#making-mounts-permanent">Making Mounts Permanent</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise16/">Exercise 16</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise17/">Exercise 17</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise18/">Exercise 18</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise19/">Exercise 19</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise20/">Exercise 20</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise21/">Exercise 21</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise22/">Exercise 22</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise23/">Exercise 23</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise24/">Exercise 24</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise25/">Exercise 25</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise26/">Exercise 26</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Software Defined Infrastructure Group 2</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Cloud Provider</li>
+      <li class="breadcrumb-item active">Exercise 15</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercise-15-partitions-and-mounting">Exercise 15: Partitions and mounting</h1>
+<p>To add a volume into the Terraform configuration a <code>hcloud_volume</code>
+resource is created. When the <code>server_id</code> is specified it will be
+automatically attached to that server. Alternatively a
+<code>hcloud_volume_attachment</code> can be used:</p>
+<pre class="highlight"><code class="language-tf">resource "hcloud_volume" "volume_exercise_15" {
+  name      = "volume-exercise-15"
+  size      = 10
+  server_id = hcloud_server.exercise_15.id
+  automount = true
+  format    = "xfs"
+}
+
+output "volume_device" {
+  description = "Linux device name of the volume"
+  value       = hcloud_volume.volume_exercise_15.linux_device
+}</code></pre>
+<p>The <code>automount</code> argument makes the volume being automatically mounted
+into the file system upon attaching it to the server. This feature is
+currently broken, since it is being implemented by a <code>runcmd</code> directive
+in <code>cloud-init</code> which is overwritten by the custom <code>cloud-init</code>
+configuration provided. To still make the automount feature available,
+the command used to automount is just added to the top of the <code>runcmd</code>
+list in the custom <code>cloud-init</code> file:</p>
+<pre class="highlight"><code class="language-yml">...
+runcmd:
+  - udevadm trigger -c add -s block -p ID_VENDOR=HC --verbose -p ID_MODEL=Volume
+...</code></pre>
+<p>When connecting to the server now the mounted volume can be observed
+under <code>/dev/sdb</code> in the file tree. The name output by Terraform says the
+volume is named <code>/dev/disk/by-id/scsi-0HC_Volume_102984619</code>. Linux by
+default has all of the disks connected to the system available under
+<code>/dev</code>. Each disk and partition connected has a so called “block special
+file” or “block device file” that refers to the block device.
+<code>/dev/sda</code>, <code>/dev/sdb</code>, … are just naming conventions for the different
+disk’s block files. The file name given by Hetzner to the created volume
+(<code>linux_device</code>) is static.</p>
+<p>The connection between these two is that the <code>linux_device</code> name
+(<code>/dev/disk/by-id/scsi-0HC_Volume_102984619</code>) is a symlink to the actual
+block file (<code>/dev/sdb</code>) of the volume. This means that if the location
+of the file were to change (when attaching more volumes for example) the
+same volume may not be reachable under <code>/dev/sdb</code> anymore but under
+<code>/dev/sdc</code> for example. But the <code>linux_device</code> path
+<code>/dev/disk/by-id/scsi-0HC_Volume_102984619</code> would still be the same and
+not change regardless of the actual file location:</p>
+<pre class="highlight"><code class="language-txt">$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+...
+/dev/sdb         10G  104M  9.9G   2% /mnt/HC_Volume_102984619
+
+$ ls -l /dev/disk/by-id/
+total 0
+lrwxrwxrwx 1 root root  9 Jul 29 15:59 ata-QEMU_DVD-ROM_QM00001 -&gt; ../../sr0
+lrwxrwxrwx 1 root root  9 Jul 29 15:59 scsi-0HC_Volume_102984619 -&gt; ../../sdb
+...</code></pre>
+<h2 id="unmounting-the-volume">Unmounting the Volume</h2>
+<p>As can be seen in the output of the <code>df</code> command above the volume is
+mounted under <code>/mnt/HC_Volume_102984619</code>. When trying to unmount the
+volume while being inside of it the unmounting fails with a
+<code>target is busy</code> message which seems reasonable since we are currently
+using the disk:</p>
+<pre class="highlight"><code class="language-txt">devops@exercise-15:/$ cd /mnt/HC_Volume_102984619/
+devops@exercise-15:/mnt/HC_Volume_102984619$ sudo umount /mnt/HC_Volume_102984619
+umount: /mnt/HC_Volume_102984619: target is busy.</code></pre>
+<p>When leaving the mounted volume and trying to unmount again the
+operation is successful. Since there is no one using the device anymore
+it is no longer blocked and can be unmounted. If also won’t show up in
+the list of file systems:</p>
+<pre class="highlight"><code class="language-txt">devops@exercise-15:/$ sudo umount /mnt/HC_Volume_102984619
+devops@exercise-15:/$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            938M     0  938M   0% /dev
+tmpfs           192M  680K  192M   1% /run
+/dev/sda1        38G  1.6G   35G   5% /
+tmpfs           960M     0  960M   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+/dev/sda15      241M  138K  241M   1% /boot/efi
+tmpfs           192M     0  192M   0% /run/user/1000</code></pre>
+<h2 id="partitioning-the-volume">Partitioning the Volume</h2>
+<p>To partition the volume <code>fdisk</code> is used. <code>fdisk</code> is an interactive
+program to create and manipulate partitions. To modify the <code>/dev/sdb</code>
+device where the disk is currently attached <code>sudo fdisk /dev/sdb</code> is used.</p>
+<p>Since the new volume is not partitioned yet a partition table needs to
+be created. We can confirm that the device is not partitioned yet with
+the command <code>F</code> which lists unpartitioned space:</p>
+<pre class="highlight"><code class="language-txt">Command (m for help): F
+
+Unpartitioned space /dev/sdb: 10 GiB, 10736352768 bytes, 20969439 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+
+Start      End  Sectors Size
+ 2048 20971486 20969439  10G</code></pre>
+<p>With <code>g</code> a new GPT partition table is created. We can now add new
+partitions to the disk with the command <code>n</code>. For each partition the
+partition number, the start (<em>first sector</em>) and the end (<em>last sector</em>)
+need to be specified. With <code>+5G</code> we can make the last sector
+automatically be at around 5 GB after the start sector, splitting the
+disk in about half:</p>
+<pre class="highlight"><code class="language-txt">Command (m for help): g
+Created a new GPT disklabel (GUID: 63C1C8E4-1B4F-7E45-8FF3-E02FD3EDDEF2).
+The device contains 'xfs' signature and it will be removed by a write command. See fdisk(8) man page and --wipe option for more details.
+
+Command (m for help): n
+Partition number (1-128, default 1): 1
+First sector (2048-20971486, default 2048):
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-20971486, default 20969471): +5G
+
+Created a new partition 1 of type 'Linux filesystem' and of size 5 GiB.
+
+Command (m for help): n
+Partition number (2-128, default 2):
+First sector (10487808-20971486, default 10487808):
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (10487808-20971486, default 20969471):
+
+Created a new partition 2 of type 'Linux filesystem' and of size 5 GiB.</code></pre>
+<p>We can inspect and confirm the partitions created by using the <code>p</code>
+command to display the partition table before committing the changes
+using <code>w</code>:</p>
+<pre class="highlight"><code class="language-txt">Command (m for help): p
+...
+
+Device        Start      End  Sectors Size Type
+/dev/sdb1      2048 10487807 10485760   5G Linux filesystem
+/dev/sdb2  10487808 20969471 10481664   5G Linux filesystem
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.</code></pre>
+<p>Both partitions created are currently just empty. In order to actually
+be able to use them to save files, a file system must be initialized on
+them. The <code>ext4</code> file system is used on the first partition while <code>xfs</code>
+is used on the second one:</p>
+<pre class="highlight"><code class="language-txt">$ sudo mkfs -t ext4 /dev/sdb1
+...
+Writing superblocks and filesystem accounting information: done
+
+devops@exercise-15:/$ sudo mkfs -t xfs /dev/sdb2
+...
+Discarding blocks...Done.</code></pre>
+<p>Right now those file systems are not mounted to the current file system
+of the server. In order to do that mounting points (<code>/disk1</code> and
+<code>/disk2</code>) have to be created and then partitions can be mounted to that
+location. File systems can be mounted using both the partition’s block
+file as well as the identfier:</p>
+<pre class="highlight"><code class="language-txt">devops@exercise-15:/$ sudo blkid
+...
+/dev/sdb2: UUID="2a2be3e2-3b0c-4370-980b-0113c6faa901" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="833b533a-10eb-8245-8e31-a0da5e13d93a"
+...
+
+devops@exercise-15:/$ sudo mount /dev/sdb1 /disk1
+devops@exercise-15:/$ sudo mount UUID=2a2be3e2-3b0c-4370-980b-0113c6faa901 /disk2
+
+devops@exercise-15:/$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+...
+/dev/sdb1       4.9G   24K  4.6G   1% /disk1
+/dev/sdb2       5.0G   68M  4.9G   2% /disk2</code></pre>
+<p>When unmounting a file system from the main file system all it’s content
+becomes unavailable:</p>
+<pre class="highlight"><code class="language-txt">devops@exercise-15:/disk1$ sudo touch test
+devops@exercise-15:/disk1$ ls
+lost+found  test
+
+devops@exercise-15:/disk1$ cd ..
+devops@exercise-15:/$ sudo umount /disk1
+devops@exercise-15:/$ sudo umount /disk2
+
+devops@exercise-15:/$ cd /disk1
+devops@exercise-15:/disk1$ ls
+devops@exercise-15:/disk1$</code></pre>
+<h2 id="making-mounts-permanent">Making Mounts Permanent</h2>
+<p>The file <code>/etc/fstab</code> contains information about mountable file systems
+in the system. Every line in the file represents a file system that can
+be mounted and is a list of six whitespace-separated fields.</p>
+<p>The first field is the specification of the file system to be mounted.
+It can be the name of the block device file, a UUID or other values. In
+case of the first file system it would be <code>/dev/sdb1</code>, for the second
+<code>UUID=2a2be3e2-3b0c-4370-980b-0113c6faa901</code>. It is usually better to
+specify the UUID of the file system since as explored earlier the block
+file may change and then invalidate the <code>fstab</code> file.</p>
+<p>The second field is the target path in the root file system. These are
+<code>/disk1</code> and <code>/disk2</code> respectively.</p>
+<p>The third field contains the type of file system of the mounted file
+system. It is <code>ext4</code> and <code>xfs</code>.</p>
+<p>The fourth field contains mout options. There it can be specified how
+and when the file system should be mounted. Since we want the file
+systems to be mounted on boot, the <code>auto</code> option is used to indicate
+that. It is also a good idea to at least specify the <code>defaults</code> option
+which also applies a prediefined, kernel-specific set of options.
+Additional options will override those defaults.</p>
+<p>The fifth field is connected to the dumping of file systems. <code>0</code> means
+no dubping which is the used option.</p>
+<p>The sixth field contains the order in which the file systems are checked
+by <code>fsck</code>. A value of <code>0</code> excludes the file system from such a check, a
+value of <code>1</code> should only be used for the root file system and a value of
+<code>2</code> (which has been chosen) for the rest.</p>
+<p>The two <code>/etc/fstab</code> entries for the two file system mounts now look
+like this:</p>
+<pre class="highlight"><code class="language-txt">/dev/sdb1                                  /disk1  ext4  auto,defaults  0  2
+UUID=2a2be3e2-3b0c-4370-980b-0113c6faa901  /disk2  xfs   auto,defaults  0  2</code></pre>
+<p>After a reboot both file systems are mounted:</p>
+<pre class="highlight"><code class="language-txt">devops@exercise-15:/$ sudo reboot
+Broadcast message from root@exercise-15 on pts/1 (Tue 2025-07-29 17:27:10 UTC):
+The system will reboot now!
+
+...
+
+devops@exercise-15:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+...
+/dev/sdb1       4.9G   24K  4.6G   1% /disk1
+/dev/sdb2       5.0G   68M  4.9G   2% /disk2</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../exercise14/" class="btn btn-neutral float-left" title="Exercise 14"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exercise16/" class="btn btn-neutral float-right" title="Exercise 16">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../exercise14/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exercise16/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

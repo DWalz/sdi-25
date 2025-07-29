@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Exercise 1 - Software Defined Infrastructure Group 2</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercise 1";
+        var mkdocs_page_input_path = "exercise01.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Software Defined Infrastructure Group 2
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manual Server Management</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercise 1</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#explanation">Explanation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#additional-remarks">Additional Remarks</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise02/">Exercise 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise03/">Exercise 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise04/">Exercise 4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise05/">Exercise 5</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise06/">Exercise 6</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise07/">Exercise 7</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise08/">Exercise 8</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise09/">Exercise 9</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise10/">Exercise 10</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Provider</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise11/">Exercise 11</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise12/">Exercise 12</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise13/">Exercise 13</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise14/">Exercise 14</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise15/">Exercise 15</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise16/">Exercise 16</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise17/">Exercise 17</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise18/">Exercise 18</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise19/">Exercise 19</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise20/">Exercise 20</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise21/">Exercise 21</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise22/">Exercise 22</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise23/">Exercise 23</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise24/">Exercise 24</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise25/">Exercise 25</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercise26/">Exercise 26</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Software Defined Infrastructure Group 2</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Manual Server Management</li>
+      <li class="breadcrumb-item active">Exercise 1</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercise-1-server-creation">Exercise 1: Server Creation</h1>
+<h2 id="documentation">Documentation</h2>
+<p>A Debian 12 server with the name <code>exercise-01</code> and a public IPv4 is
+created using the Hetzner web console. The SSH key of the local computer
+is attached to the server in order to avoid having to receive the
+password of the root account via mail.</p>
+<p>The created server has the IP <code>46.62.163.84</code>.</p>
+<p>After the login using <code>ssh root@46.62.163.84</code> the following message appears:</p>
+<pre class="highlight"><code class="language-txt">The authenticity of host '46.62.163.84 (46.62.163.84)' can't be established.
+ED25519 key fingerprint is SHA256:D2uCM+xEb8b/WQfiquGHiQWjh9xz3ZZFYBaoXtjDD9g.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?</code></pre>
+<h2 id="explanation">Explanation</h2>
+<p>When connecting to any machine using SSH a challenge-response protocol
+is being used to authenticate the user and the server against each
+other. First the user (in this case the local computer) provides its
+identity to the server, after that the server provides its identity to
+the client (the local computer). If the identity is not previously known
+it has to be manually accepted.</p>
+<p>If idenities are listed inside the <code>known_hosts</code> file, they are known
+and do not have to be specifically accepted. After manually accepting
+the new server identity, it can now be found in the <code>known_hosts</code> file
+of the lcoal machine (for better readability <code>HashKnownHosts</code> has been
+set to <code>no</code> in the <code>~/.ssh/config</code> file so that the hostnames are
+visible as cleartext):</p>
+<pre class="highlight"><code class="language-txt">$ cat ~/.ssh/known_hosts
+46.62.163.84 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5...
+46.62.163.84 ssh-rsa AAAAB3NzaC1yc2EAAAAD...
+46.62.163.84 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTI...</code></pre>
+<p>Therefor any subsequent ssh connection to the server does not request
+the acceptance of the fingerprint of the server as long as the hostname
+of the server does not change.</p>
+<h2 id="additional-remarks">Additional Remarks</h2>
+<p>The server does have to accept the identity of the client in the same
+way the client does - the identity must be authorized by the server on
+connection attempt. Since the server was created with an already
+provided SSH key (which is the public key of the local computer) it has
+already been appended to the <code>authorized_keys</code> file of the <code>root</code>
+account which in turn makes any client which can prove this identity
+authorized to connect as root to the system:</p>
+<pre class="highlight"><code class="language-txt">root@exercise-01:~# cat ~/.ssh/authorized_keys
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDJzIgYTZw/zIxjxBqv2yJzB5buLEQgX6RKEowEOA4qL</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exercise02/" class="btn btn-neutral float-right" title="Exercise 2">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exercise02/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
