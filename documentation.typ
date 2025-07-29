@@ -194,6 +194,101 @@ Writing objects: 100% (6/6), 3.96 KiB | 3.96 MiB/s, done.
 Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
 ```
 
+== Exercise 6: ssh host hopping
+
+Two Debian 12 servers named `host-a` and `host-b` were created via the Hetzner Cloud console.
+Both servers were configured with the same public SSH key to allow access from the local workstation.
+
+`host-a`has both a public IPv4 and is part of a private network. (65.21.182.46, 10.0.0.2)
+`host-b` has only a private IPv4 and is also part of the same private network. (10.0.0.3)
+
+On the local workstation, the private SSH key is loaded into the SSH agent using:
+
+```
+ssh-add ~/.ssh/id_ed25519
+```
+
+Then with the agent forwarding active a SSH connection is established:
+
+```
+ssh -A root@65.21.182.46
+```
+
+From `host-a` a second SSH connection is started to `host-b` using its private IP:
+
+```
+ssh root@10.0.0.3
+```
+
+After logging out of both hosts, the connection sequence is repeated in the same order, first `host-a` then `host-b`.
+While logged inot `host-b`, an attempt is made to open a SSH connecetion into host-a. This results in a password prompt,
+despite agent forwarding being enabled on the inital workstation connection.
+
+Exit from `host-b`to then restart the connection from `host-a` to `host-b` this time using agent forwarding a second time:
+
+```
+ssh -A root@10.0.0.2
+```
+
+Now when logged into host-b and conneceting back to `host-a`, no password prompt appears and the login is successfull.
+
+=== Explanation
+
+SSH agent forwarding allows the credentials of a local workstation to be securly forwarded to remote machines.
+This enables indirect authentication which means a user on host-a can prove his identity to host-b using the agent 
+running on the original workstation without storing keys on any server.
+
+However agent forwarding is not transitive by default.
+If `host-a` connects to `host-b` without forwaring its own agent (`-A`), then `host-b` has no access to the forwaded 
+credentials and cannot connect back to `host-a` without prompting for a password.
+
+== Exercise 7: ssh port forwarding
+
+The server `exercise-07`was created with the same configurations as the final one from #link(<exercise-03>)[Exercise 3].
+The server has the same IP as `host-a` from #link(<exercise-06>)[Exercise 6].
+
+A quick test shows that Nginx is accessible:
+
+```
+curl http://95.216.223.223
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+...
+```
+
+The firewall configuration was updated to allow only SSH (port 22) and block HTTP (port 80) from public access.
+Attempting to access the HTTP service from the local machine again shows:
+
+```
+curl -O - http://65.21.182.46
+curl: (28) Failed to connect to 65.21.182.46 port 80 after 75003 ms: Couldn't connect to server
+```
+
+To test HTTP access securly a local SSH tunnel is needed:
+
+```
+ssh -L 2000:localhost:80 root@65.21.182.46 -N
+```
+
+This command forwards local port 2000 on the workstation to port 80 on the remote server through SSH.
+Visiting the following URL in a local brwoser:
+
+```
+http://localhost:2000
+```
+renders the default Nginx welcome page, confirming that the HTTP service is accessible only through the SSH tunnel.
+
+=== Explanation
+
+SSH local port forwarding is a powerful feature that allows tunneling of TCP connecetions through a secure channel.
+By forwarding local port 2000 to port 80 on the remote host, it becomes possible to access the remote web server
+without exposing it to the public internet.
+
+This approch is useful for secure access to internal or restricted servies without altering firewall rules.
+
+
 == Exercise 11: Incrementally creating a base system
 
 === Minimal Configuration and Basics
