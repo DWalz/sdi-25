@@ -1,0 +1,41 @@
+#cloud-config
+ssh_pwauth: false
+disable_root: true
+users:
+  - name: ${default_user}
+    sudo: [ALL=(ALL) NOPASSWD:ALL]
+    lock_passwd: true
+    ssh-authorized-keys:
+      - ${local_ssh_public}
+    shell: /bin/bash
+package_reboot_if_required: true
+package_update: true
+package_upgrade: true
+packages:
+  - nginx
+  - fail2ban
+  - python3-systemd
+  - plocate
+runcmd:
+  # Mount Wokraround: https://github.com/hetznercloud/terraform-provider-hcloud/issues/473#issuecomment-971535629
+  - udevadm trigger -c add -s block -p ID_VENDOR=HC --verbose -p ID_MODEL=Volume
+  # Disable Root login
+  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  # Fail2ban workaround
+  - echo "[sshd]\nbackend = systemd\nenabled = true" | tee /etc/fail2ban/jail.local
+  - systemctl restart fail2ban
+  # Update plocate database
+  - updatedb
+  # Nginx
+  - systemctl enable nginx
+  - rm /var/www/html/*
+  - >
+    echo "I'm Nginx @ $(dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com)
+    created $(date -u)" >> /var/www/html/index.html
+# Added here to minimize impact on syntax highlighting ;)
+${yamlencode({
+  ssh_keys = {
+    ed25519_public = ssh_public
+    ed25519_private = ssh_private
+  }
+})}
