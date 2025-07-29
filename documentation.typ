@@ -1,3 +1,5 @@
+#set page(numbering: "1")
+
 = Software Defined Infrastructure
 
 == Exercise 1: Server Creation <exercise-01>
