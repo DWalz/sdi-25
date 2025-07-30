@@ -159,7 +159,7 @@ Only after rebuilding the index did the file disappear from the <code>locate</co
 <h2 id="explanation">Explanation</h2>
 <p><code>plocate</code> relies on a periodically updated database of the file system.
 It does <strong>not track real-time changes</strong>, meaning newly created or deleted files are not reflected until <code>updatedb</code> is rerun.</p>
-<p>This behavior is ideal for daily indexing tasks, such as via cron jobs, but requires manual updating in scripts or exercises like this.</p>
+<p>So the best way to use this would be to run scripts in fixed intervals, like on startup or before shutting down the system.</p>
               
             </div>
           </div><footer>
