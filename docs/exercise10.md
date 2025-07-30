@@ -5,7 +5,7 @@ Using the same server as [Exercise 8](./exercise08.md) with the following IP 157
 On Debian 12 the `/var/log/auth.log` file is **not available** by default because they use **`journald`** for system logging.
 To monitor SSH login events in real-time, the following command was used:
 
-```
+```txt
 sudo journalctl -f -u ssh
 ```
 
@@ -18,7 +18,7 @@ After a few minutes of observation new login attempts were recorded without us i
 These attempts were clearly unrelated to any of our active sessions and are likely **automated brute-force attacks** from external sources.
 Example log output:
 
-```
+```txt
 Jul 28 15:21:42 indexsearch sshd[2625]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=36.67.70.198  user=root
 Jul 28 15:21:43 indexsearch sshd[2623]: Received disconnect from 157.180.78.16 port 59158:11: Bye Bye [preauth]
 Jul 28 15:21:43 indexsearch sshd[2623]: Disconnected from authenticating user root 157.180.78.16 port 59158 [preauth]
