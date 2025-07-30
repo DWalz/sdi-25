@@ -60,6 +60,10 @@
                   <li class="toctree-l1"><a class="reference internal" href="../exercise07/">Exercise 7</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercise 8</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#explanation">Explanation</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../exercise09/">Exercise 9</a>
                   </li>
@@ -125,7 +129,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="exercise-8-ssh-x11-forwarding">Exercise 8: ssh X11 forwarding</h1>
+<p>The server <code>exercise-08</code> was created with the same configurations as the
+final one from <a href="../exercise03/">Exercise 3</a>.</p>
+<p>To enable remote graphical access, the following packages were needed:</p>
+<pre class="highlight"><code>apt install -y firefox xauth</code></pre>
+<p>After the installation, the SSH connection was closed.
+Then server was accessed again from the local workstation using <strong>X11 forwarding</strong>:</p>
+<pre class="highlight"><code>ssh -Y 157.180.78.16</code></pre>
+<p>Once logged in, the Firefox browser was started on the remote machine using:</p>
+<pre class="highlight"><code>firefox &amp;</code></pre>
+<p>The Firefox window appeared <strong>locally</strong> on the workstation desktop.
+Within Firefox navigating to:</p>
+<pre class="highlight"><code>http://localhost</code></pre>
+<p>This will show the welcome page of Nginx confirming that the browser running on the server could access the local Nginx service.</p>
+<h2 id="explanation">Explanation</h2>
+<p>X11 forwarding allows GUI applications from a remote Linux system shown displayed on a local machine.
+The <code>-Y</code> flag tells SSH to securely forward X11 traffic, enabling programs like Firefox to run remotely but render locally.</p>
+<p><strong>Note for macOS and Windows:</strong>
+X11 support requires an external X server (XQuartz on macOS or VcXsrv/Xming on Windows).</p>
+<p>This setup allows secure remote GUI access without exposing services like Nginx to the public.</p>
               
             </div>
           </div><footer>
