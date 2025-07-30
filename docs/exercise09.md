@@ -57,7 +57,7 @@ rm /root/mylocaltest.txt
 ```
 
 A new `locate` call still returned the file path, since the index had not yet been updated.
-Only after rerunning did the file disappear from the `locate` results:
+Only after rebuilding the index did the file disappear from the `locate` results:
 
 ```
 sudo updatedb
