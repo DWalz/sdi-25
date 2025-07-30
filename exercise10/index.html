@@ -133,14 +133,14 @@
 <p>Using the same server as <a href="../exercise08/">Exercise 8</a> with the following IP 157.180.78.16.</p>
 <p>On Debian 12 the <code>/var/log/auth.log</code> file is <strong>not available</strong> by default because they use <strong><code>journald</code></strong> for system logging.
 To monitor SSH login events in real-time, the following command was used:</p>
-<pre class="highlight"><code>sudo journalctl -f -u ssh</code></pre>
+<pre class="highlight"><code class="language-txt">sudo journalctl -f -u ssh</code></pre>
 <p>This shows a <strong>live log</strong> of the entries related specifically to the SSH service (<code>-u ssh</code>).</p>
 <p>A separate terminal window was used to cennect to the server via SSH.
 As expected new entries appeared immediately in the journal output, loggin the new session.</p>
 <p>After a few minutes of observation new login attempts were recorded without us inititating a new connection.
 These attempts were clearly unrelated to any of our active sessions and are likely <strong>automated brute-force attacks</strong> from external sources.
 Example log output:</p>
-<pre class="highlight"><code>Jul 28 15:21:42 indexsearch sshd[2625]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=36.67.70.198  user=root
+<pre class="highlight"><code class="language-txt">Jul 28 15:21:42 indexsearch sshd[2625]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=36.67.70.198  user=root
 Jul 28 15:21:43 indexsearch sshd[2623]: Received disconnect from 157.180.78.16 port 59158:11: Bye Bye [preauth]
 Jul 28 15:21:43 indexsearch sshd[2623]: Disconnected from authenticating user root 157.180.78.16 port 59158 [preauth]
 Jul 28 15:21:44 indexsearch sshd[2625]: Failed password for root from 157.180.78.16 port 49436 ssh2
