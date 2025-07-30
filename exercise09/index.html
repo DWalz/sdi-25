@@ -132,34 +132,35 @@
                 <h1 id="exercise-9-enabling-index-based-file-search">Exercise 9: Enabling index based file search</h1>
 <p>Using the same server as <a href="../exercise08/">Exercise 8</a> with the following IP 157.180.78.16.</p>
 <p>The <code>plocate</code> package was installed to provide a file lookup mechanism using prebuilt indexes:</p>
-<pre class="highlight"><code>apt install -y plocate</code></pre>
+<pre class="highlight"><code class="language-bash">apt install -y plocate</code></pre>
 <p>To use the <code>locate</code> application first a system-wide index of all files was created using:</p>
-<pre class="highlight"><code>sudo updatedb</code></pre>
+<pre class="highlight"><code class="language-bash">sudo updatedb</code></pre>
 <p>To test the functionality, a search was done for known system files:</p>
-<pre class="highlight"><code>root@exercise-09:~# locate aptitude
+<pre class="highlight"><code class="language-txt">root@exercise-09:~# locate aptitude
 /etc/alternatives/aptitude
 /etc/alternatives/aptitude.8.gz
 /etc/alternatives/aptitude.cs.8.gz
 ...</code></pre>
 <p>Then a new file was created in the system using:</p>
-<pre class="highlight"><code>touch /root/mylocaltest.txt</code></pre>
+<pre class="highlight"><code class="language-bash">touch /root/mylocaltest.txt</code></pre>
 <p>Attempting to locate the new file immediately:</p>
-<pre class="highlight"><code>locate mylocaltest</code></pre>
+<pre class="highlight"><code class="language-bash">locate mylocaltest</code></pre>
 <p>However this returned <strong>no results</strong>, as the file was not yet included in the index.
-So we have to rebuilding the index again:</p>
-<pre class="highlight"><code>sudo updatedb</code></pre>
+So we have to rebuild the index again:</p>
+<pre class="highlight"><code class="language-bash">sudo updatedb</code></pre>
 <p>After building the index new the file could now to be found via <code>locate</code>.</p>
-<pre class="highlight"><code>root@exercise-09:~# locate mylocaltest
+<pre class="highlight"><code class="language-bash">root@exercise-09:~# locate mylocaltest
 /root/mylocaltest.txt</code></pre>
 <p>Next the file was deleted:</p>
-<pre class="highlight"><code>rm /root/mylocaltest.txt</code></pre>
+<pre class="highlight"><code class="language-bash">rm /root/mylocaltest.txt</code></pre>
 <p>A new <code>locate</code> call still returned the file path, since the index had not yet been updated.
 Only after rebuilding the index did the file disappear from the <code>locate</code> results:</p>
 <pre class="highlight"><code>sudo updatedb</code></pre>
 <h2 id="explanation">Explanation</h2>
 <p><code>plocate</code> relies on a periodically updated database of the file system.
 It does <strong>not track real-time changes</strong>, meaning newly created or deleted files are not reflected until <code>updatedb</code> is rerun.</p>
-<p>So the best way to use this would be to run scripts in fixed intervals, like on startup or before shutting down the system.</p>
+<p>So the best way to use this would be to run scripts in fixed intervals, like on startup or before shutting down the system.
+It is also possible to add a cronjob for the updating on the index in which case the <code>updatedb</code> command would automatically be called once in a while to keep the search index from becoming too out of date.</p>
               
             </div>
           </div><footer>

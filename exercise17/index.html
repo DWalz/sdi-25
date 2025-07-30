@@ -81,6 +81,12 @@
                   <li class="toctree-l1"><a class="reference internal" href="../exercise16/">Exercise 16</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercise 17</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#moving-the-file-generation-to-the-module">Moving the File Generation to the Module</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#specifying-paths-in-more-detail">Specifying Paths in More Detail</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../exercise18/">Exercise 18</a>
                   </li>
@@ -125,7 +131,77 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="exercise-17-a-module-for-ssh-host-key-handling">Exercise 17: A module for ssh host key handling</h1>
+<p>Currently, the setup of the <code>known_hosts</code> file and the <code>ssh</code> and <code>scp</code> wrappers is in the main configuration.
+For simpler development and more modular use it is sensible to move this encapsulated behavior to a module.
+We can then call this module from multiple configurations or easily loop it to allow for multiple servers to be defined.</p>
+<h2 id="moving-the-file-generation-to-the-module">Moving the File Generation to the Module</h2>
+<p>To move the functionality into a module all the template files, and <code>local_file</code> resources used to generate the <code>known_hosts</code> file and wrappers is moved into <code>./modules/ssh_wrapper</code> while the rest of the configuration is moved to <code>./configuration</code>.
+In the current state the module would not work correctly, since the resources in the modules take values from the resources in the main configuration like the server IP or the SSH public key.</p>
+<p>This information that the module needs to work as an independent, isolated Terraform module can be specified using variables.
+These variables will be enforced by Terraform when calling the module.
+The variables <code>server_username</code>, <code>server_hostname</code> and <code>server_public_key</code> are defined in the child module:</p>
+<pre class="highlight"><code class="language-tf">variable "server_username" {
+  description = "Username to use for the default user on the server"
+  type        = string
+}
+
+variable "server_hostname" {
+  description = "Hostname to use for the default user on the server (e.g. IPv4)"
+  type        = string
+}
+
+variable "server_public_key" {
+  description = "The SSH public key of the server"
+  type        = string
+}</code></pre>
+<p>They will then be used by the resources inside the module to construct the file like in <a href="../exercise14/">Exercise 14</a> before.
+The only difference is the resolution of paths.
+Before, a relative path like <code>./gen/known_hosts</code> was enough to specify the location of the file.
+Now <code>./gen/known_hosts</code> would generate the file in the <code>gen</code> folder of the child module, not the parent module.
+Terraforms <code>path</code> resource allows us to circumvent this problem: <code>path.root</code> contains the file path to the root module, which is the main configuration:</p>
+<pre class="highlight"><code class="language-tf">resource "local_file" "known_hosts" {
+  filename = "${path.root}/gen/known_hosts"
+  content = join(" ", [
+    var.server_hostname,
+    var.server_public_key
+  ])
+  file_permission = "644"
+}
+
+resource "local_file" "ssh_bin" {
+  filename = "${path.root}/bin/ssh.sh"
+  ...
+}
+
+resource "local_file" "scp_bin" {
+  filename = "${path.root}/bin/scp.sh"
+  ...
+}</code></pre>
+<h2 id="specifying-paths-in-more-detail">Specifying Paths in More Detail</h2>
+<p>The approach shown above to file paths is robust but not very flexible.
+It allows the parent module little control over the location of the files, which can lead to issues.
+Looking forward to <a href="../exercise21/">Exercise 21</a> for example, there will be a number of servers and therefor a number of <code>known_host</code>, <code>ssh</code> and <code>scp</code> files generated.
+If the current setup were to be used, all those files would overwrite each other.</p>
+<p>It is therefor better to give the calling module control over the location of the files.
+This can be done using an input variable which contains the target paths of the files being created.
+When calling the module in a loop later, this will result in each iteration being able to specify their own location separate from each other:</p>
+<pre class="highlight"><code class="language-tf">variable "output_dir" {
+  description = "The output directory of the files; they will be generated under /gen and /bin inside this directory"
+  type        = string
+  default     = path.root
+}</code></pre>
+<p>The parent module can now specify the file path:</p>
+<pre class="highlight"><code class="language-tf">module "ssh_wrapper" {
+  source            = "../modules/ssh_wrapper"
+  server_hostname   = hcloud_server.exercise_17.ipv4_address
+  server_username   = var.server_username
+  server_public_key = tls_private_key.server_ssh_key.public_key_openssh
+}</code></pre>
+<p>With that the same functionality has been extracted into a module:</p>
+<pre class="highlight"><code>$ ./bin/ssh.sh
+...
+devops@exercise-17:~$</code></pre>
               
             </div>
           </div><footer>
