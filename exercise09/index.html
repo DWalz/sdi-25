@@ -62,6 +62,10 @@
                   <li class="toctree-l1"><a class="reference internal" href="../exercise08/">Exercise 8</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercise 9</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#explanation">Explanation</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../exercise10/">Exercise 10</a>
                   </li>
@@ -125,7 +129,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="exercise-9-enabling-index-based-file-search">Exercise 9: Enabling index based file search</h1>
+<p>Using the same server as <a href="../exercise08/">Exercise 8</a> with the following IP 157.180.78.16.</p>
+<p>The <code>plocate</code> package was installed to provide a file lookup mechanism using prebuilt indexes:</p>
+<pre class="highlight"><code>apt install -y plocate</code></pre>
+<p>To use the <code>locate</code> application first a system-wide index of all files was created using:</p>
+<pre class="highlight"><code>sudo updatedb</code></pre>
+<p>To test the functionality, a search was done for known system files:</p>
+<pre class="highlight"><code>root@exercise-09:~# locate aptitude
+/etc/alternatives/aptitude
+/etc/alternatives/aptitude.8.gz
+/etc/alternatives/aptitude.cs.8.gz
+...</code></pre>
+<p>Then a new file was created in the system using:</p>
+<pre class="highlight"><code>touch /root/mylocaltest.txt</code></pre>
+<p>Attempting to locate the new file immediately:</p>
+<pre class="highlight"><code>locate mylocaltest</code></pre>
+<p>However this returned <strong>no results</strong>, as the file was not yet included in the index.
+So we have to rebuilding the index again:</p>
+<pre class="highlight"><code>sudo updatedb</code></pre>
+<p>After building the index new the file could now to be found via <code>locate</code>.</p>
+<pre class="highlight"><code>root@exercise-09:~# locate mylocaltest
+/root/mylocaltest.txt</code></pre>
+<p>Next the file was deleted:</p>
+<pre class="highlight"><code>rm /root/mylocaltest.txt</code></pre>
+<p>A new <code>locate</code> call still returned the file path, since the index had not yet been updated.
+Only after rerunning did the file disappear from the <code>locate</code> results:</p>
+<pre class="highlight"><code>sudo updatedb</code></pre>
+<h2 id="explanation">Explanation</h2>
+<p><code>plocate</code> relies on a periodically updated database of the file system.
+It does <strong>not track real-time changes</strong>, meaning newly created or deleted files are not reflected until <code>updatedb</code> is rerun.</p>
+<p>This behavior is ideal for daily indexing tasks, such as via cron jobs, but requires manual updating in scripts or exercises like this.</p>
               
             </div>
           </div><footer>
