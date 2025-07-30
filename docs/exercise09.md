@@ -68,4 +68,4 @@ sudo updatedb
 `plocate` relies on a periodically updated database of the file system.
 It does **not track real-time changes**, meaning newly created or deleted files are not reflected until `updatedb` is rerun.
 
-This behavior is ideal for daily indexing tasks, such as via cron jobs, but requires manual updating in scripts or exercises like this.
+So the best way to use this would be to run scripts in fixed intervals, like on startup or before shutting down the system.
