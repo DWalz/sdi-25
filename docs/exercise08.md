@@ -3,7 +3,7 @@
 The server `exercise-08` was created with the same configurations as the
 final one from [Exercise 3](./exercise03.md).
 
-To enable remote graphical access, the following packages were needed:
+To enable remote graphical access the following packages were needed:
 
 ```
 apt install -y firefox xauth
@@ -16,7 +16,7 @@ Then server was accessed again from the local workstation using **X11 forwarding
 ssh -Y 157.180.78.16
 ```
 
-Once logged in, the Firefox browser was started on the remote machine using:
+Once logged in Firefox browser was started on the remote machine using:
 
 ```
 firefox &
