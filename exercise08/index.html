@@ -132,12 +132,12 @@
                 <h1 id="exercise-8-ssh-x11-forwarding">Exercise 8: ssh X11 forwarding</h1>
 <p>The server <code>exercise-08</code> was created with the same configurations as the
 final one from <a href="../exercise03/">Exercise 3</a>.</p>
-<p>To enable remote graphical access, the following packages were needed:</p>
+<p>To enable remote graphical access the following packages were needed:</p>
 <pre class="highlight"><code>apt install -y firefox xauth</code></pre>
 <p>After the installation, the SSH connection was closed.
 Then server was accessed again from the local workstation using <strong>X11 forwarding</strong>:</p>
 <pre class="highlight"><code>ssh -Y 157.180.78.16</code></pre>
-<p>Once logged in, the Firefox browser was started on the remote machine using:</p>
+<p>Once logged in Firefox browser was started on the remote machine using:</p>
 <pre class="highlight"><code>firefox &amp;</code></pre>
 <p>The Firefox window appeared <strong>locally</strong> on the workstation desktop.
 Within Firefox navigating to:</p>
