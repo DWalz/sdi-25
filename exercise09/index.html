@@ -154,7 +154,7 @@ So we have to rebuilding the index again:</p>
 <p>Next the file was deleted:</p>
 <pre class="highlight"><code>rm /root/mylocaltest.txt</code></pre>
 <p>A new <code>locate</code> call still returned the file path, since the index had not yet been updated.
-Only after rerunning did the file disappear from the <code>locate</code> results:</p>
+Only after rebuilding the index did the file disappear from the <code>locate</code> results:</p>
 <pre class="highlight"><code>sudo updatedb</code></pre>
 <h2 id="explanation">Explanation</h2>
 <p><code>plocate</code> relies on a periodically updated database of the file system.
