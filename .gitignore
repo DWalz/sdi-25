@@ -6,7 +6,7 @@
 
 *.tfvars
 
-*/bin/*
-!*/bin/.gitkeep
-*/gen/*
-!*/gen/.gitkeep
+**/bin/**
+!**/bin/.gitkeep
+**/gen/**
+!**/gen/.gitkeep
