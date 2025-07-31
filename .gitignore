@@ -10,3 +10,5 @@
 !**/bin/.gitkeep
 **/gen/**
 !**/gen/.gitkeep
+
+*.DS_Store
