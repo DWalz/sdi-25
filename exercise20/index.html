@@ -87,6 +87,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../exercise19/">Exercise 19</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercise 20</a>
+    <ul class="current">
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../exercise21/">Exercise 21</a>
                   </li>
@@ -125,7 +127,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="exercise-20-creating-a-host-with-corresponding-dns-entries">Exercise 20: Creating a host with corresponding DNS entries</h1>
+<p>Since the creation of the <code>known_hosts</code> file and the <code>ssh</code>/<code>scp</code> wrappers is done in the <code>ssh_wrapper</code> module, the switch from IP based access to domain based access is simply a matter of exchanging the <code>server_hostname</code> input variable of the module.
+The module will then generate the right files in the right places with the correct <code>server_hostname</code> used:</p>
+<pre class="highlight"><code class="language-tf">module "ssh_wrapper" {
+  source            = "../modules/ssh_wrapper"
+  server_hostname   = "${var.dns_server_name}.${var.dns_server_domain}"
+  server_username   = var.server_username
+  server_public_key = tls_private_key.server_ssh_key.public_key_openssh
+  output_dir        = path.module
+}</code></pre>
+<p>The resulting <code>known_hosts</code> and <code>ssh.sh</code> files have the adapted changes:</p>
+<pre class="highlight"><code class="language-txt">$ cat gen/known_hosts
+workhorse.g2.sdi.hdm-stuttgart.cloud ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID1YDz27SNLycwLWVC0HFiZAMQuY9Ja0i0WkHiOpm2rX
+
+$ cat bin/ssh.sh
+#!/usr/bin/env bash
+GEN_DIR=$(dirname "$0")/../gen
+ssh -o UserKnownHostsFile="$GEN_DIR/known_hosts" devops@workhorse.g2.sdi.hdm-stuttgart.cloud "$@"</code></pre>
+<p>Connecting still works without a problem:</p>
+<pre class="highlight"><code class="language-txt">$ ./bin/ssh.sh
+Linux exercise-20 6.1.0-37-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.140-1 (2025-05-22) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+devops@exercise-20:~$</code></pre>
               
             </div>
           </div><footer>
