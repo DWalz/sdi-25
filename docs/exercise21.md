@@ -1,6 +1,6 @@
 # Exercise 21: Creating a fixed number of servers
 
-> This exercise is not used as base for the following exercises since it modifies ans complicates some main aspects of the configuration.
+> This exercise is not used as base for the following exercises since it modifies and complicates some main aspects of the configuration.
 
 To be able to create a fixed number of servers, a lot of Terraform loops have to be used.
 Every resource, that belongs to one server will have to be looped and all the references between the resources have to be adjusted.
@@ -45,7 +45,7 @@ resource "dns_cname_record" "exercise_dns_alias_records" {
 
 With that we can begin to create multiple servers.
 This is done using the Terraform `count` attribute which can be used to specify the number of that resource that should be created.
-If it is specifies the `count.index` variable becomes implicitly available storing the index of the current resource instance.
+If it is specified the `count.index` variable becomes implicitly available, storing the index of the current resource instance.
 This number can then be used by other referencing resources to select the right resource instance from the set:
 
 ```tf
