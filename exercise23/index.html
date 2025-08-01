@@ -93,6 +93,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../exercise22/">Exercise 22</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercise 23</a>
+    <ul class="current">
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../exercise24/">Exercise 24</a>
                   </li>
@@ -125,7 +127,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="exercise-23-testing-your-web-certificate">Exercise 23: Testing your web certificate</h1>
+<p>We now want to apply the received certificate to the <code>nginx</code> server of our configuration in order to be able to connect using HTTPS.
+This has been done manually before in <a href="../exercise18/">Exercise 18</a>.
+Now instead of doing it by hand and letting <code>certbot</code> handle the setup and modification of the <code>nginx</code> configuration, it is done using <code>cloud-init</code> to provision the server with the content.</p>
+<p>With the <code>write_files</code> section both the certificate and certificate key files are transferred to the server.</p>
+<pre class="highlight"><code class="language-txt">${yamlencode({
+  write_files = [{
+    path = "/etc/nginx/ssl/private.pem"
+    content = ssl_private
+  }, {
+    path = "/etc/nginx/ssl/certificate.pem"
+    content = ssl_certificate
+  }, {
+    path = "/etc/nginx/sites-available/default"
+    content = nginx_configuration
+  }]
+})}</code></pre>
+<p>Additionally a correct <code>nginx</code> configuration file replaces the default <code>/etc/nginx/sites-available/default</code> configuration.
+It has HTTPS enabled and references the certificate files transferred to the server:</p>
+<pre class="highlight"><code class="language-txt">server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        # SSL configuration
+        listen 443 ssl default_server;
+        listen [::]:443 ssl default_server;
+
+        ssl_certificate /etc/nginx/ssl/certificate.pem;
+        ssl_certificate_key /etc/nginx/ssl/private.pem;
+
+        root /var/www/html;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}</code></pre>
+<p>In the <code>runcmd</code> section the <code>nginx</code> service is restarted in order for the changed configuration to take effect using <code>systemctl restart nginx</code>.</p>
+<p>After running <code>terraform apply</code> to apply the configuration using the staging server first, an apply with the real server (<code>https://acme-v02.api.letsencrypt.org/directory</code>) produces a valid TLS certificate.
+It can be inspected in most browsers on the left of the search bar:</p>
+<p><img alt="TLS certificate by Let's encrypt" src="../images/ssl_certificate.png" /></p>
               
             </div>
           </div><footer>
