@@ -120,7 +120,6 @@
           <li class="breadcrumb-item">Cloud Provider</li>
       <li class="breadcrumb-item active">Exercise 20</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/DWalz/sdi-25/edit/master/docs/exercise20.md">Edit on sdi-25</a>
     </li>
   </ul>
   <hr/>
@@ -129,6 +128,9 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="exercise-20-creating-a-host-with-corresponding-dns-entries">Exercise 20: Creating a host with corresponding DNS entries</h1>
+<blockquote>
+<p>Click <a href="https://github.com/DWalz/sdi-25/tree/main/exercise20">here</a> to view the solution in the repository.</p>
+</blockquote>
 <p>Since the creation of the <code>known_hosts</code> file and the <code>ssh</code>/<code>scp</code> wrappers is done in the <code>ssh_wrapper</code> module, the switch from IP based access to domain based access is simply a matter of exchanging the <code>server_hostname</code> input variable of the module.
 The module will then generate the right files in the right places with the correct <code>server_hostname</code> used:</p>
 <pre class="highlight"><code class="language-tf">module "ssh_wrapper" {
@@ -183,10 +185,6 @@ devops@exercise-20:~$</code></pre>
 
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
-    
-        <span>
-          <a href="https://github.com/DWalz/sdi-25/" class="fa fa-code-fork" style="color: #fcfcfc"> sdi-25</a>
-        </span>
     
     
       <span><a href="../exercise19/" style="color: #fcfcfc">&laquo; Previous</a></span>

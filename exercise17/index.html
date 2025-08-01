@@ -124,7 +124,6 @@
           <li class="breadcrumb-item">Cloud Provider</li>
       <li class="breadcrumb-item active">Exercise 17</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/DWalz/sdi-25/edit/master/docs/exercise17.md">Edit on sdi-25</a>
     </li>
   </ul>
   <hr/>
@@ -133,6 +132,9 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="exercise-17-a-module-for-ssh-host-key-handling">Exercise 17: A module for ssh host key handling</h1>
+<blockquote>
+<p>Click <a href="https://github.com/DWalz/sdi-25/tree/main/exercise17">here</a> to view the solution in the repository.</p>
+</blockquote>
 <p>Currently, the setup of the <code>known_hosts</code> file and the <code>ssh</code> and <code>scp</code> wrappers is in the main configuration.
 For simpler development and more modular use it is sensible to move this encapsulated behavior to a module.
 We can then call this module from multiple configurations or easily loop it to allow for multiple servers to be defined.</p>
@@ -229,10 +231,6 @@ devops@exercise-17:~$</code></pre>
 
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
-    
-        <span>
-          <a href="https://github.com/DWalz/sdi-25/" class="fa fa-code-fork" style="color: #fcfcfc"> sdi-25</a>
-        </span>
     
     
       <span><a href="../exercise16/" style="color: #fcfcfc">&laquo; Previous</a></span>
