@@ -1,5 +1,9 @@
 # Exercise 23: Testing your web certificate
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise22) to view the solution in the repository.
+>
+> *Note:* The exercises 22 to 24 have been solved inside one configuration
+
 We now want to apply the received certificate to the `nginx` server of our configuration in order to be able to connect using HTTPS.
 This has been done manually before in [Exercise 18](./exercise18.md).
 Now instead of doing it by hand and letting `certbot` handle the setup and modification of the `nginx` configuration, it is done using `cloud-init` to provision the server with the content.

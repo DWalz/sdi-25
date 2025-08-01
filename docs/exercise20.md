@@ -1,5 +1,7 @@
 # Exercise 20: Creating a host with corresponding DNS entries
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise20) to view the solution in the repository.
+
 Since the creation of the `known_hosts` file and the `ssh`/`scp` wrappers is done in the `ssh_wrapper` module, the switch from IP based access to domain based access is simply a matter of exchanging the `server_hostname` input variable of the module.
 The module will then generate the right files in the right places with the correct `server_hostname` used:
 

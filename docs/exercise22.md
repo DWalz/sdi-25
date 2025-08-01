@@ -1,5 +1,9 @@
 # Exercise 22: Creating a web certificate
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise22) to view the solution in the repository.
+>
+> *Note:* The exercises 22 to 24 have been solved inside one configuration
+
 The `acme` provider is used in Terraform to request certificates from different certificate servers implementing the ACME protocol.
 To initialize the provider a server as well as a registration with that server is required:
 

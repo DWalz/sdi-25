@@ -1,5 +1,7 @@
 # Exercise 11: Incrementally creating a base system
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise11) to view the solution in the repository.
+
 ## Minimal Configuration and Basics
 
 The minimal configuration contained in the mentioned figure has been

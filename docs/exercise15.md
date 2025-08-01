@@ -1,5 +1,7 @@
 # Exercise 15: Partitions and mounting
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise15) to view the solution in the repository.
+
 To add a volume into the Terraform configuration a `hcloud_volume`
 resource is created. When the `server_id` is specified it will be
 automatically attached to that server. Alternatively a

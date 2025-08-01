@@ -1,6 +1,8 @@
 # Exercise 21: Creating a fixed number of servers
 
-> This exercise is not used as base for the following exercises since it modifies and complicates some main aspects of the configuration.
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise21) to view the solution in the repository.
+>
+> *Note:* This exercise is not used as base for the following exercises since it modifies and complicates some main aspects of the configuration.
 
 To be able to create a fixed number of servers, a lot of Terraform loops have to be used.
 Every resource, that belongs to one server will have to be looped and all the references between the resources have to be adjusted.

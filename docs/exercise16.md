@@ -1,5 +1,7 @@
 # Exercise 16: Mount point’s name specification
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise16) to view the solution in the repository.
+
 Instead of handling the mount of the disks manually and using
 automounted volumes the mounting can also be done manually. This results
 in much more control over the mounting process than when using

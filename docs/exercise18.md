@@ -1,5 +1,7 @@
 # Exercise 18: Enhancing your web server
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise18) to view the solution in the repository.
+
 ## Adding a DNS Entry for the Web Server
 
 Reaching the web server using the IP is possible but not very convenient.

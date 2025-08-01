@@ -1,5 +1,7 @@
 # Exercise 14: Solving the `~/.ssh/known_hosts` quirk
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise14) to view the solution in the repository.
+
 As observed in [Exercise 2](./exercise02.md) the `ssh` program warns the
 user every time the SSH fingerprint of a known host changes because such
 a change can be the indication of a man-in-the-middle attack. To prevent

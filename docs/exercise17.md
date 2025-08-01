@@ -1,5 +1,7 @@
 # Exercise 17: A module for ssh host key handling
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise17) to view the solution in the repository.
+
 Currently, the setup of the `known_hosts` file and the `ssh` and `scp` wrappers is in the main configuration.
 For simpler development and more modular use it is sensible to move this encapsulated behavior to a module.
 We can then call this module from multiple configurations or easily loop it to allow for multiple servers to be defined.

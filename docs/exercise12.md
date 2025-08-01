@@ -1,5 +1,7 @@
 # Exercise 12: Automatic Nginx installation
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise12) to view the solution in the repository.
+
 The following script can be used to install, start and enable (make it
 survive a re-boot) the `nginx` package on the server the following
 script has been created. It will update the system first `apt-get update` and `apt-get -y upgrade` and after that install Nginx and enable it using the `systemctl`:

@@ -5,8 +5,6 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.superfences
   - meta
-repo_url: https://github.com/DWalz/sdi-25/
-repo_name: sdi-25
 nav:
   - Home: index.md
   - Manual Server Management:

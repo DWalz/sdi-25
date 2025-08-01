@@ -1,5 +1,7 @@
 # Exercise 19: Creating DNS records
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise19) to view the solution in the repository.
+
 Currently the DNS configuration has only been done manually before in [Exercise 18](./exercise18.md).
 If the Terraform configuration is destroyed and then applied the IP may change making all the DNS entries invalid.
 It is much better to automatically create and update the DNS entries using Terraform.

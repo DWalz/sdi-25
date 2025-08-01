@@ -1,5 +1,7 @@
 # Exercise 13: Working on Cloud-init
 
+> Click [here](https://github.com/DWalz/sdi-25/tree/main/exercise13) to view the solution in the repository.
+
 Now instead of using a shell script to install and initialize `nginx`,
 [`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html) is used. Similarly to how Terraform is providing the
 capabilities to describe an architecture as code and let terraform
