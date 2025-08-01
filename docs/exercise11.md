@@ -3,12 +3,12 @@
 ## Minimal Configuration and Basics
 
 The minimal configuration contained in the mentioned figure has been
-copied into the file `main.tf`. Running `terraform init` initializes the provider module from the Hetzner Cloud specified at the
+copied into the file `main.tf`. Running `terraform init` initializes the [provider module from the Hetzner Cloud](https://registry.terraform.io/providers/hetznercloud/hcloud/latest) specified at the
 top of the file. This allows us to use all the definitions of Hetzner in
-Terraform to manage the server infrastructure of the project via
+[Terraform](https://developer.hashicorp.com/terraform) to manage the server infrastructure of the project via
 Terraform.
 
-The `hcloud_server` resource which is specifying a server instance in
+The [`hcloud_server` resource](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server) which is specifying a server instance in
 ouc configuration has been renamed to `exercise_11` for better
 identification. Running `terraform plan` right now, Terraform will us inform of changes it will make to the
 current configuration present in the cloud. The proposed changes follow
@@ -33,7 +33,7 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 
 ## Adding the SSH Firewall
 
-To add an SSH firewall to the server a `hcloud_firewall` resource has to
+To add an SSH firewall to the server a [`hcloud_firewall` resource](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/firewall) has to
 be created which represents a firewall object in the Hetzner Cloud. The
 firewall has to have a single inbound rule for TCP traffic on port 22:
 
@@ -86,8 +86,8 @@ the Hetzner Cloud.
 
 In the Cloud Console the created server and firewall can now be
 observed. The server has an IP of `37.27.219.19` and the applied
-firewall can be seen. Pinging the server now would fail, since there is
-no ICMP firewall is configured for the server which would allow any ping
+firewall can be seen. Pinging the server now would **fail**, since there is
+**no ICMP firewall** configured for the server which would allow any ping
 traffic to it. The only way to reach it would be via SSH using `ssh root@37.27.219.19`.
 
 Sadly, the automatic E-Mail was never sent to the E-Mail account
@@ -99,8 +99,8 @@ server upon creation like in [Exercise 1](./exercise01.md).
 ## Version Control and Secrets
 
 Currently the private API token for the Hetzner API is readable in plain
-text inside the `main.tf` file making it unable to be used in version
-control like Git. To circumvent the issue the token has to be specified
+text inside the `main.tf` file, making it unable to be used in version
+control like [`git`](https://git-scm.com/). To circumvent the issue the token has to be specified
 as a variable which can then be used in the initialization of the
 `hcloud` provider. This makes it possible to load the variable from
 another file and then apply it without it ever having to be present in
@@ -149,7 +149,7 @@ sensitive information outside of version control.
 To be able to log in to the server without using a password we have to
 add the public key of the local machine to the server’s
 `authorized_keys` file. To register a SSH key in the Hetzner Cloud the
-`hcloud_ssh_key` resource is used. In it the `public_key` can be
+[`hcloud_ssh_key`](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/ssh_key) resource is used. In it the `public_key` can be
 provided from either a file or as a string:
 
 ```tf

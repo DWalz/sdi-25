@@ -1,6 +1,6 @@
 # Exercise 4: `ssh-agent` installation
 
-`ssh-agent` has been installed on the local system. Now every first time
+[`ssh-agent`](https://linux.die.net/man/1/ssh-agent) has been installed on the local system. Now every **first time**
 a login session needs to use the private key to establish connections
 the agent asks for the passphrase of the active key. Every following
 request is then answered by the ssh-agent alleviating the user of the

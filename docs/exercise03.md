@@ -1,16 +1,17 @@
 # Exercise 3: Improve your server’s security
 
 A firewall with the name `fw-exercise-03` has been created with a single
-inbound rule for **ICMP** traffic. The server `exercise-03` has been
+inbound rule for [**ICMP**](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol) traffic. The server `exercise-03` has been
 created using the new firewall and the same procedure as the previous
-exercises. The server IP for `exercise-03` is `46.62.163.84`.
+exercises.
+The server IP for `exercise-03` is `46.62.163.84`.
 
 Pinging the server with `ping 46.62.163.84` results in successful ping answers but trying to connect using `ssh root@46.62.163.84` results in a timeout.
 
 ## Firewalls and SSH
 
 Firewalls work on a whitelist principle. This means that as soon as a
-firewall is applied all traffic is forbidden except the traffic allowed
+firewall is applied **all traffic is forbidden** except the traffic allowed
 by the firewall’s rules. Currently the firewall limits incoming traffic
 to use the **ICMP** protocol which is used to exchange operation
 information (for example the “alive-ness” when using `ping`) which
@@ -57,10 +58,10 @@ Saving to: ‘STDOUT’
 ## Nginx & Firewall
 
 When trying to get the file from the local computer the connection fails
-with a timeout similarly to the SSH case before. The firewall once again
+with a timeout similarly to the **SSH** case before. The firewall once again
 blocks all incoming traffic that is not whitelisted by a firewall rule.
-Since HTTP used TCP over port 80 the current firewall setup blocks the
-incoming HTTP traffic.
+Since **HTTP** used **TCP** over port 80 the current firewall setup blocks the
+incoming **HTTP** traffic.
 
 Since the firewall sits between the server and the internet, requests
 can be made from the server to itself. The firewall would block such

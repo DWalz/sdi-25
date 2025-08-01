@@ -1,7 +1,7 @@
 # Exercise 13: Working on Cloud-init
 
 Now instead of using a shell script to install and initialize `nginx`,
-`cloud-init` is used. Similarly to how Terraform is providing the
+[`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html) is used. Similarly to how Terraform is providing the
 capabilities to describe an architecture as code and let terraform
 handle the setup process, `cloud-init` provides the capabilites to
 describe the server state as code and setup the sever respectively. The
@@ -207,3 +207,25 @@ devops@exercise-13:~$ sudo systemctl status fail2ban
       Active: active (running) since Mon 2025-07-28 16:36:22 UTC; 19min ago
 ...
 ```
+
+
+## Firewall Attachment Issues
+
+At some point during the project Hetzner had issues with attaching, and especially removing firewalls from servers using the `firewall_ids` attribute in the server's definitions.
+There was a technical issue that made firewall detachment take way longer than expected, resulting in firewalls being still assigned to a server resource while the server itself was already destructed at that point.
+The firewalls couldn't be deleted anymore since they were still attached to a resource when in fact the resource was not existsing anymore leaving them orphaned.
+
+To stop this issue from occuring a firewall attachment has explicitly been specified to connect the firewall to the server.
+The Terraform `lifecycle` argument can then be used to force Terraform to replace the whole attachment on change of one of the resources referenced, stopping the implicit changes and attachments that were the issue before:
+
+```tf
+resource "hcloud_firewall_attachment" "exercise_fw_attachment" {
+  firewall_id = hcloud_firewall.fw_exercise_13.id
+  server_ids  = [hcloud_server.exercise_13.id]
+  lifecycle {
+    replace_triggered_by = [ hcloud_server.exercise_13, hcloud_firewall.fw_exercise_13 ]
+  }
+}
+```
+
+In the following exercises this method has been used throughout to mitigate this problem and prevent lots of orphaned firewalls in the group.
