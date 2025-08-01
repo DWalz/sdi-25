@@ -1,7 +1,3 @@
-Here is your corrected version with only **spelling and grammar** fixed. I kept all sentence structures intact, even if they are a bit awkward:
-
----
-
 # Exercise 6: SSH Host Hopping
 
 Two Debian 12 servers named `host-a` and `host-b` were created via the
@@ -36,7 +32,3 @@ However, agent forwarding is not transitive by default. If `host-a`
 connects to `host-b` without forwarding its own agent (`-A`), then
 `host-b` has no access to the forwarded credentials and cannot connect
 back to `host-a` without prompting for a password.
-
----
-
-Let me know if you want a version with improved phrasing as well.
