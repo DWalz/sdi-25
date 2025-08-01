@@ -5,5 +5,5 @@ Use the sidebar on the left to navigate the exercises.
 
 The solutions have been created by:
 
-- Sascha Novak (, sn062@hdm-stuttgart.de)
+- Sascha Novak (43772, sn062@hdm-stuttgart.de)
 - Dominik Walz (44169, dw084@hdm-stuttgart.de)
