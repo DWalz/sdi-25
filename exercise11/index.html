@@ -132,6 +132,7 @@
           <li class="breadcrumb-item">Cloud Provider</li>
       <li class="breadcrumb-item active">Exercise 11</li>
     <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/DWalz/sdi-25/edit/master/docs/exercise11.md">Edit on sdi-25</a>
     </li>
   </ul>
   <hr/>
@@ -142,11 +143,11 @@
                 <h1 id="exercise-11-incrementally-creating-a-base-system">Exercise 11: Incrementally creating a base system</h1>
 <h2 id="minimal-configuration-and-basics">Minimal Configuration and Basics</h2>
 <p>The minimal configuration contained in the mentioned figure has been
-copied into the file <code>main.tf</code>. Running <code>terraform init</code> initializes the provider module from the Hetzner Cloud specified at the
+copied into the file <code>main.tf</code>. Running <code>terraform init</code> initializes the <a href="https://registry.terraform.io/providers/hetznercloud/hcloud/latest">provider module from the Hetzner Cloud</a> specified at the
 top of the file. This allows us to use all the definitions of Hetzner in
-Terraform to manage the server infrastructure of the project via
+<a href="https://developer.hashicorp.com/terraform">Terraform</a> to manage the server infrastructure of the project via
 Terraform.</p>
-<p>The <code>hcloud_server</code> resource which is specifying a server instance in
+<p>The <a href="https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server"><code>hcloud_server</code> resource</a> which is specifying a server instance in
 ouc configuration has been renamed to <code>exercise_11</code> for better
 identification. Running <code>terraform plan</code> right now, Terraform will us inform of changes it will make to the
 current configuration present in the cloud. The proposed changes follow
@@ -166,7 +167,7 @@ Terraform will perform the following actions:
 
 Plan: 1 to add, 0 to change, 0 to destroy.</code></pre>
 <h2 id="adding-the-ssh-firewall">Adding the SSH Firewall</h2>
-<p>To add an SSH firewall to the server a <code>hcloud_firewall</code> resource has to
+<p>To add an SSH firewall to the server a <a href="https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/firewall"><code>hcloud_firewall</code> resource</a> has to
 be created which represents a firewall object in the Hetzner Cloud. The
 firewall has to have a single inbound rule for TCP traffic on port 22:</p>
 <pre class="highlight"><code class="language-tf">resource "hcloud_firewall" "fw_ssh" {
@@ -207,8 +208,8 @@ server resource. With <code>terraform apply</code> the planned configuration wil
 the Hetzner Cloud.</p>
 <p>In the Cloud Console the created server and firewall can now be
 observed. The server has an IP of <code>37.27.219.19</code> and the applied
-firewall can be seen. Pinging the server now would fail, since there is
-no ICMP firewall is configured for the server which would allow any ping
+firewall can be seen. Pinging the server now would <strong>fail</strong>, since there is
+<strong>no ICMP firewall</strong> configured for the server which would allow any ping
 traffic to it. The only way to reach it would be via SSH using <code>ssh root@37.27.219.19</code>.</p>
 <p>Sadly, the automatic E-Mail was never sent to the E-Mail account
 provided to Hetzner and therefor the root password was unknown. It can
@@ -217,8 +218,8 @@ the server. A way better option however is to provide a SSH key to the
 server upon creation like in <a href="../exercise01/">Exercise 1</a>.</p>
 <h2 id="version-control-and-secrets">Version Control and Secrets</h2>
 <p>Currently the private API token for the Hetzner API is readable in plain
-text inside the <code>main.tf</code> file making it unable to be used in version
-control like Git. To circumvent the issue the token has to be specified
+text inside the <code>main.tf</code> file, making it unable to be used in version
+control like <a href="https://git-scm.com/"><code>git</code></a>. To circumvent the issue the token has to be specified
 as a variable which can then be used in the initialization of the
 <code>hcloud</code> provider. This makes it possible to load the variable from
 another file and then apply it without it ever having to be present in
@@ -252,7 +253,7 @@ sensitive information outside of version control.</p>
 <p>To be able to log in to the server without using a password we have to
 add the public key of the local machine to the server’s
 <code>authorized_keys</code> file. To register a SSH key in the Hetzner Cloud the
-<code>hcloud_ssh_key</code> resource is used. In it the <code>public_key</code> can be
+<a href="https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/ssh_key"><code>hcloud_ssh_key</code></a> resource is used. In it the <code>public_key</code> can be
 provided from either a file or as a string:</p>
 <pre class="highlight"><code class="language-tf">resource "hcloud_ssh_key" "dw084_ssh_key" {
   name       = "dw084-ssh-key"
@@ -320,6 +321,10 @@ server_ip = "37.27.219.19"</code></pre>
 
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/DWalz/sdi-25/" class="fa fa-code-fork" style="color: #fcfcfc"> sdi-25</a>
+        </span>
     
     
       <span><a href="../exercise10/" style="color: #fcfcfc">&laquo; Previous</a></span>

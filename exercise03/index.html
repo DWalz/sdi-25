@@ -126,6 +126,7 @@
           <li class="breadcrumb-item">Manual Server Management</li>
       <li class="breadcrumb-item active">Exercise 3</li>
     <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/DWalz/sdi-25/edit/master/docs/exercise03.md">Edit on sdi-25</a>
     </li>
   </ul>
   <hr/>
@@ -135,13 +136,14 @@
               
                 <h1 id="exercise-3-improve-your-servers-security">Exercise 3: Improve your server’s security</h1>
 <p>A firewall with the name <code>fw-exercise-03</code> has been created with a single
-inbound rule for <strong>ICMP</strong> traffic. The server <code>exercise-03</code> has been
+inbound rule for <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol"><strong>ICMP</strong></a> traffic. The server <code>exercise-03</code> has been
 created using the new firewall and the same procedure as the previous
-exercises. The server IP for <code>exercise-03</code> is <code>46.62.163.84</code>.</p>
+exercises.
+The server IP for <code>exercise-03</code> is <code>46.62.163.84</code>.</p>
 <p>Pinging the server with <code>ping 46.62.163.84</code> results in successful ping answers but trying to connect using <code>ssh root@46.62.163.84</code> results in a timeout.</p>
 <h2 id="firewalls-and-ssh">Firewalls and SSH</h2>
 <p>Firewalls work on a whitelist principle. This means that as soon as a
-firewall is applied all traffic is forbidden except the traffic allowed
+firewall is applied <strong>all traffic is forbidden</strong> except the traffic allowed
 by the firewall’s rules. Currently the firewall limits incoming traffic
 to use the <strong>ICMP</strong> protocol which is used to exchange operation
 information (for example the “alive-ness” when using <code>ping</code>) which
@@ -176,10 +178,10 @@ Saving to: ‘STDOUT’
 ...</code></pre>
 <h2 id="nginx-firewall">Nginx &amp; Firewall</h2>
 <p>When trying to get the file from the local computer the connection fails
-with a timeout similarly to the SSH case before. The firewall once again
+with a timeout similarly to the <strong>SSH</strong> case before. The firewall once again
 blocks all incoming traffic that is not whitelisted by a firewall rule.
-Since HTTP used TCP over port 80 the current firewall setup blocks the
-incoming HTTP traffic.</p>
+Since <strong>HTTP</strong> used <strong>TCP</strong> over port 80 the current firewall setup blocks the
+incoming <strong>HTTP</strong> traffic.</p>
 <p>Since the firewall sits between the server and the internet, requests
 can be made from the server to itself. The firewall would block such
 traffic were it to receive it but since it is just routed using the
@@ -224,6 +226,10 @@ Saving to: ‘STDOUT’
 
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/DWalz/sdi-25/" class="fa fa-code-fork" style="color: #fcfcfc"> sdi-25</a>
+        </span>
     
     
       <span><a href="../exercise02/" style="color: #fcfcfc">&laquo; Previous</a></span>

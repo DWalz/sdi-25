@@ -78,6 +78,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#installing-fail2ban-plocate">Installing fail2ban &amp; plocate</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#firewall-attachment-issues">Firewall Attachment Issues</a>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../exercise14/">Exercise 14</a>
@@ -124,6 +126,7 @@
           <li class="breadcrumb-item">Cloud Provider</li>
       <li class="breadcrumb-item active">Exercise 13</li>
     <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/DWalz/sdi-25/edit/master/docs/exercise13.md">Edit on sdi-25</a>
     </li>
   </ul>
   <hr/>
@@ -133,7 +136,7 @@
               
                 <h1 id="exercise-13-working-on-cloud-init">Exercise 13: Working on Cloud-init</h1>
 <p>Now instead of using a shell script to install and initialize <code>nginx</code>,
-<code>cloud-init</code> is used. Similarly to how Terraform is providing the
+<a href="https://cloudinit.readthedocs.io/en/latest/index.html"><code>cloud-init</code></a> is used. Similarly to how Terraform is providing the
 capabilities to describe an architecture as code and let terraform
 handle the setup process, <code>cloud-init</code> provides the capabilites to
 describe the server state as code and setup the sever respectively. The
@@ -289,6 +292,20 @@ devops@exercise-13:~$ sudo systemctl status fail2ban
       Loaded: loaded (/lib/systemd/system/fail2ban.service; enabled; preset: enabled)
       Active: active (running) since Mon 2025-07-28 16:36:22 UTC; 19min ago
 ...</code></pre>
+<h2 id="firewall-attachment-issues">Firewall Attachment Issues</h2>
+<p>At some point during the project Hetzner had issues with attaching, and especially removing firewalls from servers using the <code>firewall_ids</code> attribute in the server's definitions.
+There was a technical issue that made firewall detachment take way longer than expected, resulting in firewalls being still assigned to a server resource while the server itself was already destructed at that point.
+The firewalls couldn't be deleted anymore since they were still attached to a resource when in fact the resource was not existsing anymore leaving them orphaned.</p>
+<p>To stop this issue from occuring a firewall attachment has explicitly been specified to connect the firewall to the server.
+The Terraform <code>lifecycle</code> argument can then be used to force Terraform to replace the whole attachment on change of one of the resources referenced, stopping the implicit changes and attachments that were the issue before:</p>
+<pre class="highlight"><code class="language-tf">resource "hcloud_firewall_attachment" "exercise_fw_attachment" {
+  firewall_id = hcloud_firewall.fw_exercise_13.id
+  server_ids  = [hcloud_server.exercise_13.id]
+  lifecycle {
+    replace_triggered_by = [ hcloud_server.exercise_13, hcloud_firewall.fw_exercise_13 ]
+  }
+}</code></pre>
+<p>In the following exercises this method has been used throughout to mitigate this problem and prevent lots of orphaned firewalls in the group.</p>
               
             </div>
           </div><footer>
@@ -315,6 +332,10 @@ devops@exercise-13:~$ sudo systemctl status fail2ban
 
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/DWalz/sdi-25/" class="fa fa-code-fork" style="color: #fcfcfc"> sdi-25</a>
+        </span>
     
     
       <span><a href="../exercise12/" style="color: #fcfcfc">&laquo; Previous</a></span>

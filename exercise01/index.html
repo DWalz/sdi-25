@@ -126,6 +126,7 @@
           <li class="breadcrumb-item">Manual Server Management</li>
       <li class="breadcrumb-item active">Exercise 1</li>
     <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/DWalz/sdi-25/edit/master/docs/exercise01.md">Edit on sdi-25</a>
     </li>
   </ul>
   <hr/>
@@ -135,7 +136,7 @@
               
                 <h1 id="exercise-1-server-creation">Exercise 1: Server Creation</h1>
 <h2 id="documentation">Documentation</h2>
-<p>A Debian 12 server with the name <code>exercise-01</code> and a public IPv4 is
+<p>A <strong>Debian 12</strong> server with the name <code>exercise-01</code> and a public IPv4 is
 created using the Hetzner web console. The SSH key of the local computer
 is attached to the server in order to avoid having to receive the
 password of the root account via mail.</p>
@@ -146,16 +147,16 @@ ED25519 key fingerprint is SHA256:D2uCM+xEb8b/WQfiquGHiQWjh9xz3ZZFYBaoXtjDD9g.
 This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])?</code></pre>
 <h2 id="explanation">Explanation</h2>
-<p>When connecting to any machine using SSH a challenge-response protocol
+<p>When connecting to any machine using SSH a <strong>challenge-response protocol</strong>
 is being used to authenticate the user and the server against each
 other. First the user (in this case the local computer) provides its
 identity to the server, after that the server provides its identity to
 the client (the local computer). If the identity is not previously known
 it has to be manually accepted.</p>
-<p>If idenities are listed inside the <code>known_hosts</code> file, they are known
+<p>If idenities are listed inside the <strong><code>known_hosts</code></strong> file, they are known
 and do not have to be specifically accepted. After manually accepting
 the new server identity, it can now be found in the <code>known_hosts</code> file
-of the lcoal machine (for better readability <code>HashKnownHosts</code> has been
+of the local machine (for better readability <code>HashKnownHosts</code> has been
 set to <code>no</code> in the <code>~/.ssh/config</code> file so that the hostnames are
 visible as cleartext):</p>
 <pre class="highlight"><code class="language-txt">$ cat ~/.ssh/known_hosts
@@ -166,12 +167,12 @@ visible as cleartext):</p>
 the acceptance of the fingerprint of the server as long as the hostname
 of the server does not change.</p>
 <h2 id="additional-remarks">Additional Remarks</h2>
-<p>The server does have to accept the identity of the client in the same
+<p>The <strong>server does have to accept the identity of the client</strong> in the same
 way the client does - the identity must be authorized by the server on
 connection attempt. Since the server was created with an already
-provided SSH key (which is the public key of the local computer) it has
+<strong>provided SSH key</strong> (which is the public key of the local computer) it has
 already been appended to the <code>authorized_keys</code> file of the <code>root</code>
-account which in turn makes any client which can prove this identity
+account which in turn makes any client, which can prove this identity,
 authorized to connect as root to the system:</p>
 <pre class="highlight"><code class="language-txt">root@exercise-01:~# cat ~/.ssh/authorized_keys
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDJzIgYTZw/zIxjxBqv2yJzB5buLEQgX6RKEowEOA4qL</code></pre>
@@ -201,6 +202,10 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDJzIgYTZw/zIxjxBqv2yJzB5buLEQgX6RKEowEOA4qL
 
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/DWalz/sdi-25/" class="fa fa-code-fork" style="color: #fcfcfc"> sdi-25</a>
+        </span>
     
     
       <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>

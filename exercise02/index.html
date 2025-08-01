@@ -126,6 +126,7 @@
           <li class="breadcrumb-item">Manual Server Management</li>
       <li class="breadcrumb-item active">Exercise 2</li>
     <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/DWalz/sdi-25/edit/master/docs/exercise02.md">Edit on sdi-25</a>
     </li>
   </ul>
   <hr/>
@@ -156,13 +157,13 @@ Host key for 46.62.163.84 has changed and you have requested strict checking.
 Host key verification failed.</code></pre>
 <h2 id="explanation">Explanation</h2>
 <p>This message is happens because the identity associated with the host
-<code>46.62.163.84</code> inside the <code>known_hosts</code> file differs from the key the
+<code>46.62.163.84</code> inside the <code>known_hosts</code> file <strong>differs</strong> from the key the
 server has provided now. As soon as a known host provides a different
-identity this error message occurs and warns the user from possible
-security implications. There is usually two reasons for such a scenario,
+identity, this error message occurs and warns the user from possible
+<strong>security implications</strong>. There is usually two reasons for such a scenario,
 both of which are listed in the error message:</p>
 <p>The first possibility is that the host changed its identity for some
-reason by exchanging the shh key pair for a different one (for example
+reason by exchanging the SSH key pair for a different one (for example
 if the private key of the server gets compromised).</p>
 <p>The second possibility and the possibility experienced now is that a new
 server is using the same hostname. In this specific case it is not
@@ -171,13 +172,13 @@ but the new server that is serving on the same host could also be a man
 in the middle server that is pretending to be the old service. In such a
 case it could read all the data that would usually be transmitted
 including sensitive information that <code>ssh</code> is built to handle. This is
-why it is very important to mistrust servers should such messages appear
+why it is very important to <strong>mistrust servers</strong> should such messages appear
 when connecting and double check if possible.</p>
 <h2 id="solution">Solution</h2>
 <p>Since it is known that the change in this case stems from a new server
 being created replacing the old one at the same IP this warning can be
 disregarded as a normal occurence. To fix the error message the
-offending entries in the <code>known_hosts</code> file have to be removed either
+offending entries in the <code>known_hosts</code> file have to be <strong>removed</strong> either
 manually or using the command provided by the error message: <code>ssh-keygen -f '~/.ssh/known_hosts' -R '46.62.163.84'</code> After that the host <code>46.62.163.84</code> is no longer associated with the
 identity of the old server and the connection to the new server can be
 established normally.</p>
@@ -207,6 +208,10 @@ established normally.</p>
 
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/DWalz/sdi-25/" class="fa fa-code-fork" style="color: #fcfcfc"> sdi-25</a>
+        </span>
     
     
       <span><a href="../exercise01/" style="color: #fcfcfc">&laquo; Previous</a></span>
