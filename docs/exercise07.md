@@ -1,4 +1,4 @@
-# Exercise 7: ssh port forwarding
+# Exercise 7: SSH Port Forwarding
 
 The server `exercise-07` was created with the same configurations as the
 final one from [Exercise 3](./exercise03.md). The server has the same IP as
@@ -24,17 +24,19 @@ curl -O - http://65.21.182.46
 curl: (28) Failed to connect to 65.21.182.46 port 80 after 75003 ms: Couldn't connect to server
 ```
 
-To test HTTP access securly a local SSH tunnel is needed: `ssh -L 2000:localhost:80 root@65.21.182.46 -N` This command forwards local port 2000 on the workstation to port 80 on
-the remote server through SSH. Visiting <http://localhost:2000> in a local
-brwoser renders the default Nginx welcome page, confirming that the HTTP service
+To test HTTP access securely, a local SSH tunnel is needed:
+`ssh -L 2000:localhost:80 root@65.21.182.46 -N`
+This command forwards local port 2000 on the workstation to port 80 on
+the remote server through SSH. Visiting [http://localhost:2000](http://localhost:2000) in a local
+browser renders the default Nginx welcome page, confirming that the HTTP service
 is accessible only through the SSH tunnel.
 
 ## Explanation
 
 SSH local port forwarding is a powerful feature that allows tunneling of
-TCP connecetions through a secure channel. By forwarding local port 2000
+TCP connections through a secure channel. By forwarding local port 2000
 to port 80 on the remote host, it becomes possible to access the remote
 web server without exposing it to the public internet.
 
-This approch is useful for secure access to internal or restricted
-servies without altering firewall rules.
+This approach is useful for secure access to internal or restricted
+services without altering firewall rules.
