@@ -1,6 +1,6 @@
-resource "hcloud_server" "exercise_20" {
+resource "hcloud_server" "exercise_21" {
   count       = var.server_count
-  name        = "exercise-20-${count.index}"
+  name        = "exercise-21-${count.index}"
   image       = "debian-12"
   server_type = "cpx11"
   location    = var.location
@@ -9,20 +9,20 @@ resource "hcloud_server" "exercise_20" {
 
 resource "hcloud_volume_attachment" "exercise_volume_attachment" {
   count     = var.server_count
-  volume_id = hcloud_volume.volume_exercise_20[count.index].id
-  server_id = hcloud_server.exercise_20[count.index].id
+  volume_id = hcloud_volume.volume_exercise_21[count.index].id
+  server_id = hcloud_server.exercise_21[count.index].id
   automount = false
   lifecycle {
-    replace_triggered_by = [hcloud_server.exercise_20[count.index], hcloud_volume.volume_exercise_20[count.index]]
+    replace_triggered_by = [hcloud_server.exercise_21[count.index], hcloud_volume.volume_exercise_21[count.index]]
   }
 }
 
 resource "hcloud_firewall_attachment" "exercise_fw_attachment" {
   count       = var.server_count
-  firewall_id = hcloud_firewall.fw_exercise_20.id
-  server_ids  = [hcloud_server.exercise_20[count.index].id]
+  firewall_id = hcloud_firewall.fw_exercise_21.id
+  server_ids  = [hcloud_server.exercise_21[count.index].id]
   lifecycle {
-    replace_triggered_by = [hcloud_server.exercise_20[count.index], hcloud_firewall.fw_exercise_20]
+    replace_triggered_by = [hcloud_server.exercise_21[count.index], hcloud_firewall.fw_exercise_21]
   }
 }
 
@@ -40,7 +40,7 @@ module "custom_dns" {
   source    = "../modules/custom_dns"
   zone      = "g2.sdi.hdm-stuttgart.cloud"
   main_name = "${var.dns_server_name}-${count.index}"
-  server_ip = hcloud_server.exercise_20[count.index].ipv4_address
+  server_ip = hcloud_server.exercise_21[count.index].ipv4_address
   alias = [
     for alias in var.dns_server_aliases :
     "${alias}-${count.index}"

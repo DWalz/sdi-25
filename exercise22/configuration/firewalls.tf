@@ -1,5 +1,5 @@
-resource "hcloud_firewall" "fw_exercise_21" {
-  name = "exercise-21-fw"
+resource "hcloud_firewall" "fw_exercise_22" {
+  name = "exercise-22-fw"
   rule {
     description = "SSH inbound"
     direction   = "in"
